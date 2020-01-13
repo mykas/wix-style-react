@@ -56,9 +56,7 @@ export default {
             }),
           ]),
 
-          columns([
-            importExample("import Image from 'wix-style-react/Image';"),
-          ]),
+          importExample("import Image from 'wix-style-react/Image';"),
 
           divider(),
 
@@ -72,15 +70,10 @@ export default {
 
             code({
               compact: true,
-              source: '<Image buttonText="Hello World!"/>',
+              source:
+                '<Image source="https://labviewwiki.org/w/images/a/a9/Example.jpg" />',
             }),
           ]),
-
-          code({
-            title: 'Full Interactive Preview',
-            description: 'A non compact version of same code example as above',
-            source: '<Image buttonText="Hello World!"/>',
-          }),
         ],
       }),
 

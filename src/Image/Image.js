@@ -1,59 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Text from '../Text';
-import Button from '../Button';
 import styles from './Image.st.css';
-import { dataHooks } from './constants';
 
-/** Image */
-class Image extends React.PureComponent {
-  static displayName = 'Image';
+const Image = ({ dataHook, source, ...otherProps }) => {
+  return (
+    <div
+      {...styles('root', {}, otherProps)}
+      data-hook={dataHook}
+      style={source && { backgroundImage: `url(${source})` }}
+    >
+      <img className={styles.image} src={source} />
+    </div>
+  );
+};
 
-  static propTypes = {
-    dataHook: PropTypes.string,
+Image.propTypes = {
+  dataHook: PropTypes.string,
+  source: PropTypes.string,
+};
 
-    /** Text for the button */
-    buttonText: PropTypes.string,
-  };
-
-  static defaultProps = {
-    buttonText: 'Click me!',
-  };
-
-  state = {
-    count: 0,
-  };
-
-  _handleClick = () => {
-    this.setState(({ count }) => ({
-      count: count + 1,
-    }));
-  };
-
-  render() {
-    const { count } = this.state;
-    const { dataHook, buttonText } = this.props;
-    const isEven = count % 2 === 0;
-
-    return (
-      <div
-        {...styles('root', { even: isEven, odd: !isEven }, this.props)}
-        data-hook={dataHook}
-      >
-        <Text dataHook={dataHooks.imageCount}>
-          You clicked this button {isEven ? 'even' : 'odd'} number (
-          <span className={styles.number}>{count}</span>) of times
-        </Text>
-
-        <div className={styles.button}>
-          <Button onClick={this._handleClick} dataHook={dataHooks.imageButton}>
-            {buttonText}
-          </Button>
-        </div>
-      </div>
-    );
-  }
-}
+Image.displayName = 'Image';
 
 export default Image;
