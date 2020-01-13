@@ -163,6 +163,7 @@ export const marketingLayoutTestkitFactory = enzymeUniTestkitFactoryCreator(load
 export const paletteTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Palette/Palette.uni.driver')));
 export const warningIndicatorTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/WarningIndicator/WarningIndicator.uni.driver')));
 export const variableInputTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/VariableInput/VariableInput.uni.driver')));
+export const imageTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Image/Image.uni.driver')));
 export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Deprecated/SideMenu/DrillView/DrillView.driver')));
 export const headerTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Card/Header/Header.driver')));
 export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Deprecated/SideMenu/core/SideMenu.driver')));

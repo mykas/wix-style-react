@@ -454,5 +454,8 @@
   },
   "VariableInput": {
     "path": "src/VariableInput"
+  },
+  "Image": {
+    "path": "src/Image"
   }
 }

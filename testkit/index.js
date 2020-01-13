@@ -163,6 +163,7 @@ export const marketingLayoutTestkitFactory = uniTestkitFactoryCreator(load(requi
 export const paletteTestkitFactory = uniTestkitFactoryCreator(load(require('../src/Palette/Palette.uni.driver')));
 export const warningIndicatorTestkitFactory = uniTestkitFactoryCreator(load(require('../src/WarningIndicator/WarningIndicator.uni.driver')));
 export const variableInputTestkitFactory = uniTestkitFactoryCreator(load(require('../src/VariableInput/VariableInput.uni.driver')));
+export const imageTestkitFactory = uniTestkitFactoryCreator(load(require('../src/Image/Image.uni.driver')));
 export const sideMenuDrillTestkitFactory = testkitFactoryCreator(load(require('../src/Deprecated/SideMenu/DrillView/DrillView.driver')));
 export const headerTestkitFactory = testkitFactoryCreator(load(require('../src/Card/Header/Header.driver')));
 export const sideMenuTestkitFactory = testkitFactoryCreator(load(require('../src/Deprecated/SideMenu/core/SideMenu.driver')));

@@ -144,6 +144,7 @@ export const marketingLayoutTestkitFactory = puppeteerUniTestkitFactoryCreator(l
 export const paletteTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Palette/Palette.uni.driver')));
 export const warningIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/WarningIndicator/WarningIndicator.uni.driver')));
 export const variableInputTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/VariableInput/VariableInput.uni.driver')));
+export const imageTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Image/Image.uni.driver')));
 export const drillViewTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Deprecated/SideMenu/DrillView/DrillView.uni.driver')));
 export const cardHeaderTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Card/Header/Header.uni.driver')));
 export const sideMenuTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Deprecated/SideMenu/core/SideMenu.uni.driver')));
