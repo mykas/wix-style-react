@@ -12,9 +12,8 @@ import {
 } from 'wix-storybook-utils/Sections';
 import LinkTo from '@storybook/addon-links/react';
 import * as examples from './examples';
-
-import InputArea from 'wix-style-react/InputArea';
 import FormField from 'wix-style-react/FormField';
+import RichTextInputArea from 'wix-style-react/RichTextInputArea';
 
 const code = config =>
   baseCode({
@@ -31,8 +30,8 @@ export default {
     header({
       component: (
         <div style={{ width: '50%' }}>
-          <FormField label="Text Area">
-            <InputArea placeholder="Placeholder" />
+          <FormField label="Rich Text Area">
+            <RichTextInputArea placeholder="Placeholder" />
           </FormField>
         </div>
       ),
@@ -41,7 +40,9 @@ export default {
     }),
 
     columns([
-      description('A text area can be used to allow for extended user input.'),
+      description(
+        'A rich text area can be used to allow for extended and formated user input.',
+      ),
     ]),
 
     columns([
@@ -58,22 +59,22 @@ export default {
           [
             <LinkTo
               kind="Components"
-              story="InputArea"
-            >{`<InputArea/>`}</LinkTo>,
-            'Component that receives data',
+              story="RichTextInputArea"
+            >{`<RichTextInputArea/>`}</LinkTo>,
+            'Component that receives rich data',
           ],
         ],
       }),
     ]),
 
-    columns([importExample(examples.importExample)]),
+    importExample(examples.importExample),
 
     title('Examples'),
 
     columns([
       description({
         title: 'Plain Example',
-        text: 'Default text area setup.',
+        text: 'Default Rich text area setup.',
       }),
       code({ source: examples.basicExample }),
     ]),
