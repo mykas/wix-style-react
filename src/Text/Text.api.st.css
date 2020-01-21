@@ -11,7 +11,7 @@
 }
 
 .root {
-  -st-states: disabled, secondary, light, withList,
+  -st-states: disabled, secondary, light,
     skin(enum(standard, success, error, premium, disabled, primary)),
     size(enum(tiny, small, medium)), weight(enum(thin, normal, bold));
 
