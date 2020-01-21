@@ -5,7 +5,7 @@ import Slide from 'rc-slider';
 import { generateID } from '../utils/generateId';
 import SliderHandle from './SliderHandle';
 import styles from './Slider.scss';
-import textStyles from '../Text/Text.st.css';
+import textStyles from '../Text/Text.api.st.css';
 
 const range = ({ min, max, step }) => {
   const arr = [];

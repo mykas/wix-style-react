@@ -30,7 +30,7 @@ export const WEIGHTS = {
 
 const getStyleDataAttributes = styleAttributes =>
   Object.keys(styleAttributes).reduce((acc, styleKey) => {
-    acc[`data-${styleKey.toLowerCase()}`] = styleAttributes[styleKey];
+    acc[`data-${styleKey}`] = styleAttributes[styleKey];
     return acc;
   }, {});
 
@@ -53,7 +53,6 @@ const Text = ({
     skin,
     light,
     weight,
-    withList: true,
   };
   const styleDataAttributes = getStyleDataAttributes(styleAttributes);
 

@@ -5,7 +5,7 @@ import FooterLayout from './FooterLayout';
 import WixComponent from '../../BaseComponents/WixComponent';
 import classNames from 'classnames';
 import throttle from 'lodash/throttle';
-import textStyles from '../../Text/Text.st.css';
+import textStyles from '../../Text/Text.api.st.css';
 
 import styles from './MessageBoxFunctionalLayout.scss';
 

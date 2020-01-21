@@ -1,13 +1,6 @@
 :import {
-  -st-from: '../Foundation/stylable/typography.st.css';
-  -st-named: text-tiny-thin, text-tiny-normal, text-tiny-bold, text-small-thin,
-  text-small-normal, text-small-bold, text-medium-thin, text-medium-normal,
-  text-medium-bold;
-}
-
-:import {
-  -st-from: '../Foundation/stylable/colors.st.css';
-  -st-named: B10, B20, D10, D20, D40, D80, D10-30, D80-70, G10, P10, R10;
+  -st-from: './Text.api.st.css';
+  -st-default: TextAPI;
 }
 
 :vars {
@@ -21,116 +14,24 @@
 }
 
 .root {
-  -st-states: disabled, secondary, light, withList,
-    skin(enum(standard, success, error, premium, disabled, primary)),
-    size(enum(tiny, small, medium)), weight(enum(thin, normal, bold));
-
-  white-space: pre-line;
+  -st-extends: TextAPI;
 }
 
-/****** Weights ******/
-/* Thin */
-.root:weight(thin):size(tiny) {
-  -st-mixin: text-tiny-thin;
-}
-.root:weight(thin):size(small) {
-  -st-mixin: text-small-thin;
-}
-.root:weight(thin):size(medium) {
-  -st-mixin: text-medium-thin;
-}
-
-/* Normal */
-.root:weight(normal):size(tiny) {
-  -st-mixin: text-tiny-normal;
-}
-.root:weight(normal):size(small) {
-  -st-mixin: text-small-normal;
-}
-.root:weight(normal):size(medium) {
-  -st-mixin: text-medium-normal;
-}
-
-/* Bold */
-.root:weight(bold):size(tiny) {
-  -st-mixin: text-tiny-bold;
-}
-.root:weight(bold):size(small) {
-  -st-mixin: text-small-bold;
-}
-.root:weight(bold):size(medium) {
-  -st-mixin: text-medium-bold;
-}
-
-/******* Skins *******/
-/* Standard */
-.root:skin(standard) {
-  color: value(D10);
-}
-.root:skin(standard):light {
-  color: value(D80);
-}
-.root:skin(standard):secondary {
-  color: value(D20);
-}
-.root:skin(standard):light:secondary {
-  color: value(D40);
-}
-
-/* Success */
-.root:skin(success) {
-  color: value(G10);
-}
-
-/* Error */
-.root:skin(error) {
-  color: value(R10);
-}
-
-/* Premium */
-.root:skin(premium) {
-  color: value(P10);
-}
-
-/* Disabled */
-.root:skin(disabled) {
-  color: value(D10-30);
-}
-.root:skin(disabled):light {
-  color: value(D80-70);
-}
-
-/* Primary */
-.root:skin(primary) {
-  color: value(B10);
-}
-
-/******** Link ********/
-.root > a {
-  color: value(B10);
-  text-decoration: none;
-}
-
-.root > a:hover {
-  color: value(B20);
-}
-
-/* nested ul styles */
-.root:withList ul {
+.root ul {
   padding: 0;
   list-style-type: none;
 }
 
-.root:withList ul ul {
+.root ul ul {
   padding: 6px 0;
 }
 
-.root:withList ul li {
+.root ul li {
   position: relative;
   padding-left: 30px;
 }
 
-.root:withList ul li::before {
+.root ul li::before {
   content: '';
   position: absolute;
   display: block;
@@ -143,21 +44,21 @@
   mask: value(listIconUrl) no-repeat center/contain;
 }
 
-.root:withList:size(small) ul li {
+.root:size(small) ul li {
   padding-left: 25px;
 }
 
-.root:withList:size(small) ul li::before {
+.root:size(small) ul li::before {
   width: 21px;
   height: 21px;
   top: -1px;
 }
 
-.root:withList:size(tiny) ul li {
+.root:size(tiny) ul li {
   padding-left: 21px;
 }
 
-.root:withList:size(tiny) ul li::before {
+.root:size(tiny) ul li::before {
   width: 18px;
   height: 18px;
   top: -1px;
