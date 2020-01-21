@@ -53,6 +53,7 @@ const Text = ({
     skin,
     light,
     weight,
+    withList: true,
   };
   const styleDataAttributes = getStyleDataAttributes(styleAttributes);
 
