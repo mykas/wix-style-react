@@ -20,6 +20,7 @@ import allComponents from '../../../stories/utils/allComponents';
 import BrowserPreviewWidget from '..';
 import Box from 'wix-style-react/Box';
 import Text from 'wix-style-react/Text';
+/* eslint-disable no-unused-vars */
 import { Layout, Cell } from 'wix-style-react/Layout';
 
 import { skins, browserBarSizes } from '../constants';
@@ -133,25 +134,25 @@ export default {
 
             code({
               compact: true,
-              source: `<Layout> 
+              source: `<Layout>
                 <Cell>
                   <BrowserPreviewWidget browserBarSize="${browserBarSizes.size9}">
-                    <Box width="250px" height="100px" backgroundColor="Y30"/>                 
+                    <Box width="250px" height="100px" backgroundColor="Y30"/>
                   </BrowserPreviewWidget>
                 </Cell>
                 <Cell>
                   <BrowserPreviewWidget>
-                    <Box width="350px" height="100px" backgroundColor="Y30"/>                 
+                    <Box width="350px" height="100px" backgroundColor="Y30"/>
                   </BrowserPreviewWidget>
                 </Cell>
                 <Cell>
                   <BrowserPreviewWidget browserBarSize="${browserBarSizes.size18}">
-                    <Box width="450px" height="100px" backgroundColor="Y30"/>                 
+                    <Box width="450px" height="100px" backgroundColor="Y30"/>
                   </BrowserPreviewWidget>
                 </Cell>
                 <Cell>
                   <BrowserPreviewWidget browserBarSize="${browserBarSizes.size24}">
-                    <Box width="700px" height="100px" backgroundColor="Y30"/>                 
+                    <Box width="700px" height="100px" backgroundColor="Y30"/>
                   </BrowserPreviewWidget>
                 </Cell>
               </Layout>`,

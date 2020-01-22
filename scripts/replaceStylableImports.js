@@ -20,11 +20,48 @@ module.exports = () => {
             reject();
             return;
           }
-          const codeWithEsImport = content.replace(
-            /wix-ui-core\/index\.st\.css/g,
-            'wix-ui-core/index.es.st.css',
-          );
-          fs.writeFile(filepath, codeWithEsImport, function(err) {
+
+          let results = content;
+
+          results = results
+            .replace(
+              /wix-ui-core\/index\.st\.css/g,
+              'wix-ui-core/index.es.st.css',
+            )
+            .replace(
+              /wix-ui-core\/hocs\.st\.css/g,
+              'wix-ui-core/hocs.es.st.css',
+            );
+
+          const wrongPaths = [
+            {
+              regexp: /wix-ui-core\/dist\/src\/hocs\/.*\/[A-Za-z]*\.st\.css/,
+              correct: 'hocs.st.css',
+            },
+            {
+              regexp: /wix-ui-core\/dist\/src\/components\/.*\/[A-Za-z]*\.st\.css/,
+              correct: 'index.st.css',
+            },
+          ];
+
+          wrongPaths.forEach(({ regexp, correct }) => {
+            if (regexp.test(results)) {
+              const message = [
+                'This stylesheet',
+                filepath,
+                'includes import path',
+                results.match(regexp),
+                'which is not compatible with our es-modules infrastructure.',
+                'Makes sure to change your wix-ui-core import to this: -st-import:',
+                `wix-ui-core/${correct}`,
+                'and to named import: -st-named: ComponentName;',
+                '',
+              ];
+              throw new Error(message.join(' '));
+            }
+          });
+
+          fs.writeFile(filepath, results, function(err) {
             if (err) {
               reject();
               return;

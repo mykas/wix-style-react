@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
-import { storySettings } from '../docs/storySettings';
 import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import ColorPicker from '..';
 

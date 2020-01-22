@@ -26,6 +26,8 @@ class VariableInput extends React.PureComponent {
     disabled: bool,
     /** Initial value to display in the editor */
     initialValue: string,
+    /** When set to true, component will allow multiple lines, otherwise will scroll horizontaly and ignore return key*/
+    multiline: bool,
     /** Callback function for changes while typing.
      * `onChange(value: String): void` */
     onChange: func,
@@ -54,6 +56,7 @@ class VariableInput extends React.PureComponent {
   };
   static defaultProps = {
     initialValue: '',
+    multiline: true,
     rows: 1,
     size: sizeTypes.medium,
     statusMessage: '',
@@ -108,6 +111,7 @@ class VariableInput extends React.PureComponent {
   render() {
     const {
       dataHook,
+      multiline,
       rows,
       size,
       disabled,
@@ -115,10 +119,18 @@ class VariableInput extends React.PureComponent {
       status,
       statusMessage,
     } = this.props;
+    const singleLineProps = {
+      handlePastedText: this._handlePastedText,
+      handleReturn: () => 'handled',
+    };
     return (
       <div
         data-hook={dataHook}
-        {...styles('root', { disabled, size, status }, this.props)}
+        {...styles(
+          'root',
+          { disabled, size, status, singleLine: !multiline },
+          this.props,
+        )}
         style={{ '--rows': rows }}
       >
         <Editor
@@ -126,35 +138,27 @@ class VariableInput extends React.PureComponent {
           editorState={this.state.editorState}
           onChange={this._onEditorChange}
           placeholder={placeholder}
-          onBlur={() => setTimeout(this._onBlur, 0)}
           readOnly={disabled}
+          {...(!multiline && singleLineProps)}
         />
         {this._renderIndicator(status, statusMessage)}
       </div>
     );
   }
+  _handlePastedText = (text, html, editorState) => {
+    /** We need to prevent new line when `multilne` is false,
+     * here we are removing any new lines while pasting text   */
+    if (/\r|\n/.exec(text)) {
+      text = text.replace(/(\r\n|\n|\r)/gm, '');
+      this._onEditorChange(EditorUtilities.insertText(editorState, text));
+      return true;
+    }
+    return false;
+  };
+  _isEmpty = () =>
+    this.state.editorState.getCurrentContent().getPlainText().length === 0;
   _inputToTagSize = inputSize => {
     return inputToTagsSize[inputSize] || VariableInput.defaultProps.size;
-  };
-  _onBlur = () => {
-    const { editorState } = this.state;
-    const {
-      variableTemplate: { prefix, suffix },
-    } = this.props;
-    if (EditorUtilities.hasUnparsedEntity(editorState, prefix, suffix)) {
-      this._setStringValue(
-        EditorUtilities.convertToString({
-          editorState,
-          prefix,
-          suffix,
-        }),
-        () => {
-          this._onSubmit();
-        },
-      );
-    } else {
-      this._onSubmit();
-    }
   };
   _onSubmit = () => {
     const {
@@ -162,12 +166,13 @@ class VariableInput extends React.PureComponent {
       variableTemplate: { prefix, suffix },
     } = this.props;
     const { editorState } = this.state;
-    const value = EditorUtilities.convertToString({
-      editorState,
-      prefix,
-      suffix,
-    });
-    onSubmit(value);
+    onSubmit(
+      EditorUtilities.convertToString({
+        editorState,
+        prefix,
+        suffix,
+      }),
+    );
   };
   _onChange = () => {
     const {
@@ -184,17 +189,41 @@ class VariableInput extends React.PureComponent {
     );
   };
   _onEditorChange = editorState => {
-    this._setEditorState(editorState, () => {
-      this._onChange();
-    });
+    this._setEditorState(editorState);
   };
   _setEditorState = (editorState, onStateChanged = () => {}) => {
-    const updateEditorState = EditorUtilities.moveToEdge(editorState);
+    const { editorState: editorStateBefore } = this.state;
+    const {
+      variableTemplate: { prefix, suffix },
+    } = this.props;
+    let updateEditorState = EditorUtilities.moveToEdge(editorState);
+    let triggerCallback = () => {};
+    if (EditorUtilities.isBlured(editorStateBefore, updateEditorState)) {
+      // onChange is called after the editor blur handler
+      // and we can't reflect the changes there, we moved the logic here.
+      triggerCallback = this._onSubmit;
+      if (
+        EditorUtilities.hasUnparsedEntity(updateEditorState, prefix, suffix)
+      ) {
+        updateEditorState = this._stringToContentState(
+          EditorUtilities.convertToString({
+            editorState: updateEditorState,
+            prefix,
+            suffix,
+          }),
+        );
+      }
+    } else if (
+      EditorUtilities.isContentChanged(editorStateBefore, updateEditorState)
+    ) {
+      triggerCallback = this._onChange;
+    }
     this.setState({ editorState: updateEditorState }, () => {
+      triggerCallback();
       onStateChanged();
     });
   };
-  _setStringValue = (str, afterUpdated = () => {}) => {
+  _stringToContentState = str => {
     const {
       variableParser = () => {},
       variableTemplate: { prefix, suffix },
@@ -206,10 +235,13 @@ class VariableInput extends React.PureComponent {
       prefix,
       suffix,
     });
-    const updatedEditorState = EditorUtilities.pushAndKeepSelection({
+    return EditorUtilities.pushAndKeepSelection({
       editorState,
       content,
     });
+  };
+  _setStringValue = (str, afterUpdated = () => {}) => {
+    const updatedEditorState = this._stringToContentState(str);
     this._setEditorState(updatedEditorState, () => {
       afterUpdated(updatedEditorState);
     });

@@ -1,5 +1,6 @@
 @import '../../common';
 @import '../../mixins';
+@import '../../Typography/text.scss';
 
 $minimum-modal-margin: 48px;
 
@@ -19,6 +20,7 @@ $minimum-modal-margin: 48px;
 }
 
 .body {
+  @extend .text, .sizeMedium, .weightThin;
   padding: 36px 30px 12px;
   box-sizing: border-box;
 

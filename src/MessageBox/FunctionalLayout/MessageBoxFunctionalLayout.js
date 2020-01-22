@@ -5,7 +5,6 @@ import FooterLayout from './FooterLayout';
 import WixComponent from '../../BaseComponents/WixComponent';
 import classNames from 'classnames';
 import throttle from 'lodash/throttle';
-import textStyles from '../../Text/Text.st.css';
 
 import styles from './MessageBoxFunctionalLayout.scss';
 
@@ -78,11 +77,7 @@ class MessageBoxFunctionalLayout extends WixComponent {
     return (
       <div
         data-hook="message-box-body"
-        {...textStyles(
-          'root',
-          { size: 'medium', skin: 'standard', weight: 'thin' },
-          { className: messageBoxBodyClassNames },
-        )}
+        className={messageBoxBodyClassNames}
         style={messageBoxBodyStyle}
         ref={this._initializeMessageBoxRef}
       >

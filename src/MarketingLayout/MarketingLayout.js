@@ -1,10 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './MarketingLayout.st.css';
-import Content from './Content';
-import { APPEARANCES } from '../Heading';
-import { SIZES as TEXT_SIZES } from '../Text';
+
+import Content from './components/Content';
+import { Layout, Cell } from '../Layout';
+import Proportion from '../Proportion';
 import { SIZES } from './constants';
+import styles from './MarketingLayout.st.css';
+
+const cellSpansBySize = {
+  [SIZES.small]: {
+    image: 2,
+    spacer: 1,
+    content: 9,
+  },
+  [SIZES.medium]: {
+    image: 4,
+    spacer: 1,
+    content: 7,
+  },
+  [SIZES.large]: {
+    image: 5,
+    spacer: 1,
+    content: 6,
+  },
+};
+
+const imagePlaceholderAspectRatioBySize = {
+  [SIZES.small]: 1,
+  [SIZES.medium]: 282 / 188,
+  [SIZES.large]: 360 / 240,
+};
 
 /** Marketing layout is a layout designed to promote new features or display first time visit.
  * Component has title, description, action and illustration areas. */
@@ -33,39 +58,56 @@ class MarketingLayout extends React.PureComponent {
     inverted: false,
   };
 
-  sizes = {
-    [SIZES.small]: {
-      titleAppearance: APPEARANCES.H3,
-      descriptionSize: TEXT_SIZES.small,
-    },
-    [SIZES.medium]: {
-      titleAppearance: APPEARANCES.H2,
-      descriptionSize: TEXT_SIZES.medium,
-    },
-    [SIZES.large]: {
-      titleAppearance: APPEARANCES.H2,
-      descriptionSize: TEXT_SIZES.medium,
-    },
+  _renderSpacerCell = span => <Cell key="spacer" span={span} />;
+
+  _renderImagePlaceholder = () => {
+    const { size } = this.props;
+    return (
+      <Proportion aspectRatio={imagePlaceholderAspectRatioBySize[size]}>
+        <div className={styles.imagePlaceholder} />
+      </Proportion>
+    );
+  };
+
+  _renderImageCell = span => {
+    const { image } = this.props;
+    return (
+      <Cell key="image" span={span}>
+        <div className={styles.imageContainer}>
+          {image || this._renderImagePlaceholder()}
+        </div>
+      </Cell>
+    );
+  };
+
+  _renderContentCell = span => {
+    const { size, actions, title, description } = this.props;
+    return (
+      <Cell key="content" span={span}>
+        <Content
+          size={size}
+          actions={actions}
+          title={title}
+          description={description}
+        />
+      </Cell>
+    );
   };
 
   _renderContent = () => {
-    const { inverted, actions, title, description, image, size } = this.props;
-    const layoutProps = this.sizes[size];
+    const { inverted, size } = this.props;
+    const cellSpans = cellSpansBySize[size];
+    const spacerCell = this._renderSpacerCell(cellSpans.spacer);
+    const imageCell = this._renderImageCell(cellSpans.image);
+    const contentCell = this._renderContentCell(cellSpans.content);
 
-    const toRender = [
-      <div key="image" className={styles.imageContainer}>
-        {image || <div className={styles.imagePlaceholder} />}
-      </div>,
-      <Content
-        key="content"
-        layoutProps={layoutProps}
-        actions={actions}
-        title={title}
-        description={description}
-      />,
-    ];
-
-    return inverted ? toRender : toRender.reverse();
+    return (
+      <Layout>
+        {inverted
+          ? [imageCell, contentCell, spacerCell]
+          : [contentCell, spacerCell, imageCell]}
+      </Layout>
+    );
   };
 
   render() {
@@ -73,7 +115,11 @@ class MarketingLayout extends React.PureComponent {
 
     return (
       <div
-        {...styles('root', { size, inverted, actions }, this.props)}
+        {...styles(
+          'root',
+          { size, inverted, withActions: !!actions },
+          this.props,
+        )}
         data-hook={dataHook}
       >
         {this._renderContent()}

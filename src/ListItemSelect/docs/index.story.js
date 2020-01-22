@@ -30,8 +30,7 @@ const code = config =>
 
 export default {
   category: storySettings.category,
-  storyName: 'ListItemSelect',
-
+  storyName: storySettings.storyName,
   component: ListItemSelect,
   componentPath: '..',
 

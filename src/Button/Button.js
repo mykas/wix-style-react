@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
-import cx from 'classnames';
+import { generateDataAttr } from '../utils/generateDataAttr';
+
 import styles from './Button.st.css';
 
 import {
@@ -14,7 +15,7 @@ import {
   func,
 } from 'prop-types';
 
-class Button extends Component {
+class Button extends PureComponent {
   static displayName = 'Button';
 
   static propTypes = {
@@ -33,7 +34,7 @@ class Button extends Component {
       'transparent',
       'premium-light',
     ]),
-    /** Underline of Button content */
+    /** Priority of Button content */
     priority: oneOf(['primary', 'secondary']),
     /** Size of Button content */
     size: oneOf(['tiny', 'small', 'medium', 'large']),
@@ -64,25 +65,23 @@ class Button extends Component {
       skin,
       priority,
       size,
+      className,
       fullWidth,
       children,
-      className,
       dataHook,
       ...rest
     } = this.props;
 
-    const fluid = fullWidth ? 'fullWidth' : '';
-    const clsArray = [fluid, skin, priority, size].map(
-      cls => styles[cls] || null,
-    );
-    const classNames = cx(styles.button, className, clsArray);
-
     return (
       <ButtonNext
         {...rest}
+        {...generateDataAttr(this.props, ['skin', 'size', 'priority'])}
+        {...styles(
+          'root',
+          { fluid: fullWidth, skin, priority, size },
+          this.props,
+        )}
         data-hook={dataHook}
-        className={classNames}
-        data-skin={skin}
       >
         {children}
       </ButtonNext>

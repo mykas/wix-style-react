@@ -8,83 +8,60 @@ export const description = {
 };
 
 export const sizeSmall = `
-  <Card>
-    <Card.Content>
-      <MarketingLayout
-        title="Small Size Card"
-        description="This card requires less attention. It can promote side features that might add value, but ar not mandatory to achieve main goals."
-        actions={<Button size="small">Get Started</Button>}
-        image={<Box backgroundColor="lightgrey" width="126px" height="126px"></Box>}
-      />
-    </Card.Content>
-  </Card>
+  <MarketingLayout
+    title="Small Size Layout"
+    description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
+    actions={<Button size="small">Get Started</Button>}
+  />
 `;
 
 export const sizeMedium = `
-  <Card>
-    <Card.Content>
-      <MarketingLayout
-        title="Medium Size Card"
-        description="This card is big enough to be noticed and can be used to promote big things while still leaving plenty of space."
-        actions={<Button size="medium">Get Started</Button>}
-        image={<Box backgroundColor="lightgrey" width="282px" height="188px"></Box>}
-        size="medium"
-      />
-    </Card.Content>
-  </Card>
+  <MarketingLayout
+    title="Medium Size Layout"
+    description="This layout is big enough to be noticed and can be used to promote big things while still leaving plenty of space."
+    actions={<Button size="medium">Get Started</Button>}
+    size="medium"
+  />
 `;
 
 export const sizeLarge = `
-  <Card>
-    <Card.Content>
-      <MarketingLayout
-        title="Large Size Card"
-        description="This card is very prominent, use it to promote apps or things like staff featured templates."
-        actions={<Button size="large">Get Started</Button>}
-        image={<Box backgroundColor="lightgrey" width="360px" height="240px"></Box>}
-        size="large"
-      />
-    </Card.Content>
-  </Card>
+  <MarketingLayout
+    title="Large Size Layout"
+    description="This layout is very prominent, use it to promote apps or things like staff featured templates."
+    actions={<Button size="large">Get Started</Button>}
+    size="large"
+  />
 `;
 
 export const inverted = `
-  <Card>
-    <Card.Content>
-      <MarketingLayout
-        title="Customize Your Own Automated Emails"
-        description="Design customized emails and set the automated triggers. Remember to disabled the relevant default email above if you're creating your own branded emails."
-        inverted
-        actions={<Button size="small" priority="secondary">Create Automations</Button>}
-        image={<img src="https://static.parastorage.com/services/promote-seo/1.980.0/assets/task-list/ic-connect-to-google-icon.svg" width="100%" />}
-      />
-    </Card.Content>
-  </Card>
+  <MarketingLayout
+    title="Customize Your Own Automated Emails"
+    description="Design customized emails and set the automated triggers. Remember to disabled the relevant default email above if you're creating your own branded emails."
+    inverted
+    actions={<Button size="small" priority="secondary">Create Automations</Button>}
+    image={<img src="https://static.parastorage.com/services/promote-seo/1.980.0/assets/task-list/ic-connect-to-google-icon.svg" width="100%" />}
+  />
 `;
 
 export const advanced = `
-  <Card controls={<CloseButton skin="dark" size="medium" />}>
-    <Card.Content size="medium">
-      <MarketingLayout
-        inverted
-        title={
-          <Layout cols={1} gap="6px">
-            <Heading appearance="H5">STEP 1</Heading>
-            <Heading appearance="H2">Get Your Site Listed on Google</Heading>
-          </Layout>
-        }
-        description={
-          <Layout cols={1} gap="0px">
-            <Text>Complete this checklist to connect your site to Google.</Text>
-            <TextButton>Learn More</TextButton>
-          </Layout>
-        }
-        size="medium"
-        actions={<Button size="medium" priority="secondary" prefixIcon={<Icons.Google/>}>Connect to Google</Button>}
-        image={<img src="https://static.parastorage.com/services/promote-seo/1.980.0/assets/task-list/ic-connect-to-google-icon.svg" width="100%" />}
-      />
-    </Card.Content>
-  </Card>
+  <MarketingLayout
+    inverted
+    title={
+      <Layout cols={1} gap="6px">
+        <Heading appearance="H5">STEP 1</Heading>
+        <Heading appearance="H2">Get Your Site Listed on Google</Heading>
+      </Layout>
+    }
+    description={
+      <Layout cols={1} gap="0px">
+        <Text>Complete this checklist to connect your site to Google.</Text>
+        <div><TextButton>Learn More</TextButton></div>
+      </Layout>
+    }
+    size="medium"
+    actions={<Button size="medium" priority="secondary" prefixIcon={<Icons.Google/>}>Connect to Google</Button>}
+    image={<img src="https://static.parastorage.com/services/promote-seo/1.980.0/assets/task-list/ic-connect-to-google-icon.svg" width="100%" />}
+  />
 `;
 
 export const images = [

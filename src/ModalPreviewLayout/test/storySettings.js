@@ -5,6 +5,6 @@ export const storySettings = {
   storyName: 'ModalPreviewLayout',
   dataHook: 'story-modal-preview-layout',
   testStoryNames: {
-    DEFAULT: 'Default',
+    modalNavigationButtons: 'Modal Navigation Buttons',
   },
 };

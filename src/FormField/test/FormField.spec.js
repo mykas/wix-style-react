@@ -10,8 +10,8 @@ import {
 import styles from '../FormField.scss';
 import formFieldDriverFactory from '../FormField.driver';
 import { formFieldUniDriverFactory } from '../FormField.uni.driver';
-
 import FormField from '..';
+import { dataHooks } from '../constants';
 
 describe('FormField', () => {
   const renderFormField = (props = {}) => (
@@ -82,7 +82,7 @@ describe('FormField', () => {
           expect(await driver.exists()).toEqual(true);
           expect(
             !!(await driver.element()).querySelector(
-              '[data-hook="formfield-inline-suffixes"]',
+              `[data-hook="${dataHooks.labelIndicators}"]`,
             ),
           ).toEqual(true);
         });
@@ -272,6 +272,45 @@ describe('FormField', () => {
           renderFormField({ label, labelPlacement: 'left', charCount }),
         );
         expect(await driver.getLengthLeft()).toBe(charCount);
+      });
+    });
+
+    describe('suffix prop', () => {
+      const sampleText = 'Something';
+      const suffix = <div>{sampleText}</div>;
+
+      it('should render the suffix', async () => {
+        const { driver } = render(
+          renderFormField({
+            label,
+            suffix,
+          }),
+        );
+
+        // As long as we support the legacy driver we cannot actually use UniDriver's `text` method 😔
+        expect((await driver.getSuffix()).textContent).toBe(sampleText);
+      });
+
+      it('should render the suffix when label is inline', async () => {
+        const { driver } = render(
+          renderFormField({
+            label,
+            suffix,
+            labelPlacement: 'left',
+          }),
+        );
+
+        expect((await driver.getSuffix()).textContent).toBe(sampleText);
+      });
+
+      it('should render the suffix when char counter is provided', async () => {
+        const charCount = 50;
+        const { driver } = render(
+          renderFormField({ label, suffix, charCount }),
+        );
+
+        expect((await driver.getSuffix()).textContent).toBe(sampleText);
+        expect(await driver.getLengthLeft()).not.toBe(charCount);
       });
     });
   }

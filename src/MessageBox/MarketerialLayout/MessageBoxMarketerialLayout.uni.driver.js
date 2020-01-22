@@ -2,6 +2,8 @@ import { baseUniDriverFactory } from '../../../test/utils/unidriver';
 
 export const messageBoxMarketerialLayoutUniDriverFactory = base => {
   const getPrimaryButtonBase = () => base.$('[data-hook="primary-button"]');
+  const getPrimaryButtonNodeBase = () =>
+    base.$('[data-hook="primary-button-node"]');
   const getSecondaryButtonBase = () => base.$('[data-hook="secondary-button"]');
   const getCloseButtonBase = () => base.$('[data-hook="close-button"]');
   const getMessageBoxTitleBase = () =>
@@ -13,6 +15,10 @@ export const messageBoxMarketerialLayoutUniDriverFactory = base => {
     getPrimaryButtonText: () => getPrimaryButtonBase().text(),
     getPrimaryButton: async () =>
       (await getPrimaryButtonBase().exists()) ? getPrimaryButtonBase() : null,
+    getPrimaryButtonNode: async () =>
+      (await getPrimaryButtonNodeBase().exists())
+        ? getPrimaryButtonNodeBase()
+        : null,
     getSecondaryButtonText: () => getSecondaryButtonBase().text(),
     getSecondaryButton: async () =>
       (await getSecondaryButtonBase().exists())

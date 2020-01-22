@@ -32,3 +32,4 @@ require('../src/Range/docs/testStory');
 require('../src/RichTextInputArea/docs/testStory');
 require('../src/Search/docs/testStory');
 require('../src/DatePicker/docs/testStory');
+require('../src/ModalPreviewLayout/test/testStory');

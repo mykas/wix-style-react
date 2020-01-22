@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "7.30.0",
+  "version": "7.37.1",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -79,6 +79,7 @@
     "------performance analysis tools": "",
     "bundles:analyse": "npm run analyse --prefix .perfer",
     "------can be removed?": "",
+    "storybook:named-imports": " npm run transpile && start-storybook -c ./test-runtime/imports/.storybook -p 6009",
     "travis": "npm run lint && npm run proxy-wix-ui-icons && npm run transpile && npm run test:unit -- --maxWorkers=4",
     "transpile:watch": "babel src --out-dir dist/es/src --copy-files --watch --plugins=@babel/plugin-syntax-dynamic-import",
     "make-async-spec": "npx jscodeshift -t scripts/unidriver-migration/src/make-async/make-async.js",
@@ -228,7 +229,7 @@
     "wix-eventually": "^2.2.0",
     "wix-ui-backoffice": "^1.0.339",
     "wix-ui-core": "^2.0.435",
-    "wix-ui-icons-common": "^2.0.68",
+    "wix-ui-icons-common": "^2.0.60",
     "wix-ui-test-utils": "^1.0.151"
   },
   "lint-staged": {

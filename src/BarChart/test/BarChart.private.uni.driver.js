@@ -1,5 +1,4 @@
 import publicDriverFactory from '../BarChart.uni.driver';
-import DataHooks from '../dataHooks';
 
 export const barChartPrivateDriverFactory = (base, body) => {
   return {

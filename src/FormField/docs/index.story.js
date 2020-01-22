@@ -184,6 +184,12 @@ export default {
             source: exampleCharCount,
           }),
           code({
+            title: 'With custom suffix',
+            description:
+              'An example that shows custom suffix element. Notice in case there are both `suffix` and `charCount`, the character counter will disappear',
+            source: examples.customSuffix,
+          }),
+          code({
             title: 'Within Grid',
             source: examples.ExampleWithinGrid,
           }),

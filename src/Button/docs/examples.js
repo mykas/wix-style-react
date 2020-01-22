@@ -10,40 +10,42 @@ export const primary = `
         </Box>
         <Button skin="destructive">destructive</Button>
         <Button skin="premium">premium</Button>
+      
       </Layout>
     </Cell>
     <Cell>
-      <Layout cols={4} gap="10px" justifyItems="center">  
+      <Layout cols={3} gap="10px" justifyItems="center">  
         <Box backgroundColor="B20" padding="3px"> 
           <Button skin="transparent">transparent</Button>
         </Box>
         <Button skin="dark">dark</Button>
+        <Button skin="premium-light">premium-light</Button>
       </Layout>
     </Cell>
   </Layout>
 </Cell>
 <Cell>
-  <Layout cols={2}>
+  <Layout >
     <Cell>
-      <Layout cols={4} gap="10px"  alignItems="center">   
-        <Button priority="secondary">default</Button>
-        <Button skin="inverted">inverted</Button>
+      <Layout cols={4} gap="10px" justifyItems="center" alignItems="center">   
+        <Button priority="secondary">standard</Button>
         <Box backgroundColor="D10" padding="3px"> 
           <Button priority="secondary" skin="light" fullWidth>light</Button>
         </Box>
-        <Button priority="secondary" skin="premium">premium</Button>
+        <Button skin="inverted">inverted</Button>
+        <Button skin="destructive" priority="secondary">destructive</Button>
       </Layout>
     </Cell>
     <Cell>
-      <Layout cols={4} gap="10px" justifyItems="center">  
-        <Box backgroundColor="D10" padding="3px"> 
-          <Button priority="secondary" skin="premium-light" fullWidth>PremiumLight</Button>
-        </Box>
-        <Box backgroundColor="B20" padding="3px"> 
-          <Button priority="secondary" skin="transparent">transparent</Button>
-        </Box>        
-        <Box backgroundColor="Y30" padding="3px"> 
+      <Layout cols={3} gap="10px" justifyItems="center">  
+      <Box backgroundColor="B20" padding="3px"> 
+        <Button priority="secondary" skin="transparent">transparent</Button>
+      </Box> 
+      <Box backgroundColor="Y30" padding="3px"> 
           <Button priority="secondary" skin="dark" fullWidth>dark</Button>
+        </Box>
+        <Box backgroundColor="D10" padding="3px"> 
+          <Button priority="secondary" skin="premium-light" fullWidth>premium-light</Button>
         </Box>
       </Layout>
     </Cell>

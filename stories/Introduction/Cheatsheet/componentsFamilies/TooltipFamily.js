@@ -26,7 +26,7 @@ import FloatingHelper from 'wix-style-react/FloatingHelper';
 import Text from 'wix-style-react/Text';
 import Box from 'wix-style-react/Box';
 import TextButton from 'wix-style-react/TextButton';
-import { Layout, Cell } from 'wix-style-react/Layout';
+import { Layout } from 'wix-style-react/Layout';
 
 //icons
 import Add from 'wix-ui-icons-common/Add';

@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTestUtils from 'react-dom/test-utils';
 import dropdownDriverFactory from '../Dropdown.driver';
 import Dropdown from '../Dropdown';
-import { dropdownTestkitFactory } from '../../../testkit';
-import { dropdownTestkitFactory as enzymeDropdownTestkitFactory } from '../../../testkit/enzyme';
-import { mount } from 'enzyme';
 import { sleep } from 'wix-ui-test-utils/react-helpers';
 import {
   createRendererWithDriver,

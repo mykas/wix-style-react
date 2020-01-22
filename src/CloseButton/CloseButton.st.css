@@ -1,6 +1,6 @@
 :import {
-  -st-from: 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
-  -st-default: Button;
+  -st-from: 'wix-ui-core/index.st.css';
+  -st-named: ButtonNext;
 }
 
 :import {
@@ -14,7 +14,7 @@
 }
 
 .root {
-  -st-extends: Button;
+  -st-extends:ButtonNext;
   -st-states: skin(string), size(string);
   width: 18px;
   height: 18px;

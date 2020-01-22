@@ -1,11 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {
-  renderSizeAndWeightTable,
-  renderColorTable,
-} from './TextClassesExample';
-import { renderHeadingTable } from './HeadingClassesExample';
+import TextClassesExample from './TextClassesExample';
+import HeadingClassesExample from './HeadingClassesExample';
 
 const tests = [
   {
@@ -19,9 +16,7 @@ const tests = [
               <h1>Typography text with classes</h1>
               <br />
               <div style={{ display: 'flex' }}>
-                {renderSizeAndWeightTable()}
-                <div style={{ width: '20px' }} />
-                {renderColorTable()}
+                <TextClassesExample />
               </div>
             </>
           );
@@ -34,7 +29,9 @@ const tests = [
             <>
               <h1>Typography heading with classes</h1>
               <br />
-              <div style={{ display: 'flex' }}>{renderHeadingTable()}</div>
+              <div style={{ display: 'flex' }}>
+                <HeadingClassesExample />
+              </div>
             </>
           );
         },

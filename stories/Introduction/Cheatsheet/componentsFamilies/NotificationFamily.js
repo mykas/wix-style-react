@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
   FamilyStructure,
   SingleComponentSideBySide,

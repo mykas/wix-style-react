@@ -15,7 +15,6 @@ describe('RichTextInputArea', () => {
     ...storySettings,
     testName: testStories.richTextInputArea,
   });
-
   const createDriver = async (dataHook = storySettings.dataHook) => {
     const driver = protractorUniTestkitFactoryCreator(
       richTextInputAreaPrivateDriverFactory,

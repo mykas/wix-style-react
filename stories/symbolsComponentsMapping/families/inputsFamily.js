@@ -65,4 +65,9 @@ export const inputsSymbolsToComponents = {
     sharedComponentsNames.FormField,
     componentsNames.ImageViewer,
   ],
+  [inputsSymbols.variableInput]: [
+    sharedComponentsNames.FormField,
+    componentsNames.VariableInput,
+    sharedComponentsNames.Tag,
+  ],
 };

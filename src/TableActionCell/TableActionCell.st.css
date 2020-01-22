@@ -9,8 +9,8 @@
 }
 
 :import {
-  -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
-  -st-named: popoverElement;
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Popover;
 }
 
 .root {
@@ -26,7 +26,7 @@
 }
 
 .hoverSlot > button,
-.hoverSlot > PopoverMenu > .popoverElement > button {
+.hoverSlot > PopoverMenu > Popover::popoverElement > button {
   margin: 0 6px;
   transition-property: background, border;
 }

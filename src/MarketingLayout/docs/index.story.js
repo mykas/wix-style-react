@@ -36,7 +36,7 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    title: 'Marketing Card Title',
+    title: 'Marketing Layout Title',
     description:
       'Connect to Google and get indexed in seconds so people can easily find your site.',
     actions: actions[0].value,
@@ -62,11 +62,9 @@ export default {
         sections: [
           columns([description(descriptionText)]),
 
-          columns([
-            importExample(
-              "import MarketingLayout from 'wix-style-react/MarketingLayout';",
-            ),
-          ]),
+          importExample(
+            "import MarketingLayout from 'wix-style-react/MarketingLayout';",
+          ),
 
           divider(),
 
@@ -75,7 +73,7 @@ export default {
           description({
             title: 'Size',
             text:
-              'Component supports three sizes small, medium, large. For each size are dedicated illustration sizes. Please note, action sizes must be adjusted too.',
+              'Component supports three sizes small, medium and large. For each size are dedicated illustration sizes. Please note, action sizes must be adjusted too.',
           }),
           code({
             compact: true,

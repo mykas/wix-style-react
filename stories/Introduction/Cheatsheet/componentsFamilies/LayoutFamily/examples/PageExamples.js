@@ -3,10 +3,7 @@ import React, { Component } from 'react';
 import { SingleComponentStacked } from '../../../sharedComponents';
 import { layoutSymbolsToComponents } from '../../../../../symbolsComponentsMapping/families/layoutFamily';
 
-import {
-  layoutSymbols,
-  symbolsGroup,
-} from '../../../../../symbolsComponentsMapping/symbols';
+import { layoutSymbols } from '../../../../../symbolsComponentsMapping/symbols';
 
 import {
   createLinkedSymbolName,
@@ -25,8 +22,6 @@ import PopoverMenu from 'wix-style-react/PopoverMenu';
 import PopoverMenuItem from 'wix-style-react/PopoverMenuItem';
 import EmptyState from 'wix-style-react/EmptyState';
 import { Category } from '../../../../../storiesHierarchy';
-
-const groupSymbol = symbolsGroup.layout;
 
 class ExamplePageWithCard extends Component {
   renderHeader() {

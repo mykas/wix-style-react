@@ -58,6 +58,13 @@ const tests = [
           placeholder: 'This is a placeholder',
         },
       },
+      {
+        it: 'Multiline',
+        props: {
+          multiline: false,
+          initialValue: 'Welcome to {{page.name}} Welcome to {{page.name}} ',
+        },
+      },
     ],
   },
 ];

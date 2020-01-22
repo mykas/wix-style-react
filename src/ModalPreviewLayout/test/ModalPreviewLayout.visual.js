@@ -26,20 +26,21 @@ const createDriver = () =>
 const commonProps = {
   title: 'Basic Website Design',
   onClose: () => null,
-  actions: (
-    <Box align="space-between" width={'276px'}>
-      <Button prefixIcon={<Print />} skin="dark">
-        Print
-      </Button>
-      <Button priority="secondary" skin="light">
-        Send
-      </Button>
-      <IconButton priority="secondary" size="small" skin="light">
-        <More />
-      </IconButton>
-    </Box>
-  ),
 };
+
+const actions = (
+  <Box align="space-between" width={'276px'}>
+    <Button prefixIcon={<Print />} skin="dark">
+      Print
+    </Button>
+    <Button priority="secondary" skin="light">
+      Send
+    </Button>
+    <IconButton priority="secondary" size="small" skin="light">
+      <More />
+    </IconButton>
+  </Box>
+);
 
 const multipleChildren = ['first', 'second', 'third'].map(ordinalNum => (
   <Box
@@ -65,63 +66,38 @@ const tests = [
               <img src={ascendInvoice} />
             </Box>
           ),
-        },
-      },
-    ],
-  },
-  {
-    describe: 'Navigation Buttons',
-    its: [
-      {
-        it: 'Right Arrow button on initial render',
-        props: { children: multipleChildren },
-      },
-      {
-        it: 'Right & Left Arrow buttons of middle child node',
-        props: { children: multipleChildren },
-        componentDidMount: async () => {
-          const driver = createDriver();
-          await driver.clickRightNavigationButton();
+          actions,
         },
       },
       {
-        it: 'Left Arrow button of last child node',
-        props: { children: multipleChildren },
-        componentDidMount: async () => {
-          const driver = createDriver();
-          await driver.clickRightNavigationButton();
-          await driver.clickRightNavigationButton();
-        },
-      },
-    ],
-  },
-  {
-    describe: 'Tooltip',
-    its: [
-      {
-        it: 'right navigation button',
-        props: { children: multipleChildren },
-        componentDidMount: async () => {
-          const driver = createDriver();
-          await driver.hoverRightNavigationButton();
+        it: 'full width',
+        props: {
+          children: (
+            <Box verticalAlign="middle" height="100%">
+              <img
+                src="https://i.ibb.co/C8HHTJx/rectangle-2x.png"
+                width="100%"
+                height="550px"
+              />
+            </Box>
+          ),
+          actions,
         },
       },
       {
-        it: 'left navigation button',
-        props: { children: multipleChildren },
-        componentDidMount: async () => {
-          const driver = createDriver();
-          await driver.clickRightNavigationButton();
-          await driver.clickRightNavigationButton();
-          await driver.hoverLeftNavigationButton();
-        },
-      },
-      {
-        it: 'close button',
-        props: { children: multipleChildren },
-        componentDidMount: async () => {
-          const driver = createDriver();
-          await driver.hoverCloseButton();
+        it: 'simple content',
+        props: {
+          children: (
+            <Box
+              align="center"
+              verticalAlign="middle"
+              backgroundColor="D80"
+              width="800px"
+              height="100%"
+            >
+              Simple Content
+            </Box>
+          ),
         },
       },
     ],

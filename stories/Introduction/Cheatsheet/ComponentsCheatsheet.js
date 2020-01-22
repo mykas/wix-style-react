@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'wix-style-react/Grid';
+import { Container, Row } from 'wix-style-react/Grid';
 import Page from 'wix-style-react/Page';
 
 //importing components by family type

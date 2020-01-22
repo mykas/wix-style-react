@@ -6,15 +6,23 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| title	 | Node | - | + | Title for Message Box |
-| content | Node | - | + | Content of the Message Box |
+| title | node | - | + | Title for Message Box |
+| content | node | - | + | Content of the Message Box |
 | primaryButtonLabel | string | - | + | Primary Button Label |
 | primaryButtonDisabled | bool | false | + | Primary Button disabled state |
+| primaryButtonTheme | node | - | - | Theme for primary button (blue or purple) |
+| primaryButtonNode | node | - | - | Custom node for primary button |
 | secondaryButtonLabel | string | - | - | Secondary Button Label |
 | onPrimaryButtonClick | func | - | - | Primary Button Click callback |
 | onSecondaryButtonClick | func | - | - | Secondary Button Click handler |
 | imageUrl | string | - | - | Header image url |
+| imageComponent | node | - | - | Custom image node |
 | onClose | func | - | + | Close callback |
+| theme | string | blue | - | theme of the message box (blue, purple or white) |
+| footerBottomChildren | node | - | - | custom node for footer bottom content |
+| removeButtonsPadding | bool | false | - | remove default padding for buttons when no buttons are provided |
+| noBodyPadding | bool | false | - | Should the body of the layout will have surrounding padding |
+| width | string | 600px | - | set custom message box width |
 
 ## MessageBoxFunctionalLayout Properties
 

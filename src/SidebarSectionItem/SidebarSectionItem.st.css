@@ -16,9 +16,8 @@
 }
 
 :import {
-  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
-  -st-default: Focusable;
-  -st-named: focus-box;
+  -st-from: "wix-ui-core/hocs.st.css";
+  -st-named: Focusable;
 }
 
 :import {
@@ -106,7 +105,7 @@
 /* Others */
 
 .root:focus {
-  -st-mixin: focus-box;
+  outline: none;
 }
 
 .root:drillable .chevron {

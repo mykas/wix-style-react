@@ -19,6 +19,7 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
 import PreviewWidget from '..';
+/* eslint-disable no-unused-vars */
 import { Layout, Cell } from 'wix-style-react/Layout';
 import Box from 'wix-style-react/Box';
 

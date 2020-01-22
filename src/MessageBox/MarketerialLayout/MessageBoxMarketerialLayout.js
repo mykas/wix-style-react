@@ -24,6 +24,8 @@ class MessageBoxMarketerialLayout extends WixComponent {
       imageComponent,
       footerBottomChildren,
       removeButtonsPadding,
+      width,
+      noBodyPadding,
     } = this.props;
 
     const headerClasses = classNames({
@@ -34,10 +36,11 @@ class MessageBoxMarketerialLayout extends WixComponent {
 
     // instead of introducing a breaking change for padding removal for non buttons existence, we add this prop
     const shouldRemoveButtonsPadding =
-      removeButtonsPadding && !primaryButtonLabel & !secondaryButtonLabel;
+      removeButtonsPadding && !primaryButtonLabel && !secondaryButtonLabel;
+    const shouldDisplayBodyPadding = !noBodyPadding;
 
     return (
-      <div className={styles.root}>
+      <div className={styles.root} style={{ width }}>
         <div className={headerClasses}>
           <div className={styles.close}>
             <CloseButton
@@ -55,10 +58,19 @@ class MessageBoxMarketerialLayout extends WixComponent {
             </div>
           ) : null}
         </div>
-        <div className={styles.title} data-hook="message-box-title">
+        <div
+          className={classNames(styles.title, {
+            [styles.bodyPadding]: shouldDisplayBodyPadding,
+          })}
+          data-hook="message-box-title"
+        >
           <Heading appearance="H1">{title}</Heading>
         </div>
-        <div className={styles.content}>
+        <div
+          className={classNames(styles.content, {
+            [styles.bodyPadding]: shouldDisplayBodyPadding,
+          })}
+        >
           <Text size="medium" weight="thin">
             {content}
           </Text>
@@ -84,6 +96,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
     const {
       primaryButtonLabel,
       primaryButtonTheme,
+      primaryButtonNode,
       theme,
       onPrimaryButtonClick,
       primaryButtonDisabled,
@@ -93,7 +106,10 @@ class MessageBoxMarketerialLayout extends WixComponent {
     } = this.props;
     return (
       <div className={styles.buttonsContainer}>
-        {primaryButtonLabel ? (
+        {!!primaryButtonNode && (
+          <div data-hook="primary-button-node">{primaryButtonNode}</div>
+        )}
+        {!primaryButtonNode && primaryButtonLabel && (
           <Button
             theme={`full${primaryButtonTheme || theme}`}
             onClick={onPrimaryButtonClick}
@@ -102,8 +118,8 @@ class MessageBoxMarketerialLayout extends WixComponent {
           >
             {primaryButtonLabel}
           </Button>
-        ) : null}
-        {secondaryButtonLabel && !footerBottomChildren ? (
+        )}
+        {secondaryButtonLabel && !footerBottomChildren && (
           <div className={styles.secondaryButtonContainer}>
             <TextButton
               size="small"
@@ -113,7 +129,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
               {secondaryButtonLabel}
             </TextButton>
           </div>
-        ) : null}
+        )}
       </div>
     );
   };
@@ -124,6 +140,7 @@ MessageBoxMarketerialLayout.propTypes = {
   content: PropTypes.node.isRequired,
   primaryButtonLabel: PropTypes.string,
   primaryButtonDisabled: PropTypes.bool,
+  primaryButtonNode: PropTypes.node,
   secondaryButtonLabel: PropTypes.string,
   onPrimaryButtonClick: PropTypes.func,
   onSecondaryButtonClick: PropTypes.func,
@@ -134,11 +151,15 @@ MessageBoxMarketerialLayout.propTypes = {
   theme: PropTypes.oneOf(['blue', 'purple', 'white']),
   primaryButtonTheme: PropTypes.oneOf(['blue', 'purple']),
   removeButtonsPadding: PropTypes.bool,
+  width: PropTypes.string,
+  noBodyPadding: PropTypes.bool,
 };
 
 MessageBoxMarketerialLayout.defaultProps = {
   theme: 'blue',
   removeButtonsPadding: false,
+  width: '600px',
+  noBodyPadding: false,
 };
 
 export default MessageBoxMarketerialLayout;

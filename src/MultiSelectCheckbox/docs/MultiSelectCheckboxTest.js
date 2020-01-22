@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { storySettings } from './storySettings';
-import options from './multiSelectOptions';
+import { options } from './examples';
 import MultiSelectCheckbox from '../MultiSelectCheckbox';
-import { valueParser } from './ExampleStandard';
+
+const valueParser = option => (option.label ? option.label : option.value);
 
 const MultiSelectCheckboxTest = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);

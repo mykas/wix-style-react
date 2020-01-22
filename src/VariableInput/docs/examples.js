@@ -43,14 +43,24 @@ export const size = `<Layout>
     ${_sizeExample('large')}
   </Cell>
 </Layout>`;
-export const rows = `<>
-  ${_rowsExample(1)}
-  <br /><br />
-  ${_rowsExample(5)}
-</>`;
+export const rows = `<Layout>
+  <Cell>
+    ${_rowsExample(1)}
+  </Cell>
+  <Cell>
+    ${_rowsExample(5)}
+  </Cell>
+</Layout>`;
 export const disabled = `<VariableInput
 disabled
 initialValue="Example {{page.name}}"
+variableParser={value => {
+  return value === 'page.name' ? 'Page name' : false;
+}}
+/>`;
+export const multiline = `<VariableInput
+initialValue="Example {{page.name}} Example {{page.name}} Example {{page.name}} Example {{page.name}}"
+multiline={false}
 variableParser={value => {
   return value === 'page.name' ? 'Page name' : false;
 }}

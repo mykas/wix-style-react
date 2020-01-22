@@ -1,5 +1,6 @@
-import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 import { Simulate } from 'react-dom/test-utils';
+import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
+import { dataHooks } from './constants';
 
 const formFieldDriver = ({ element, dataHook }) => {
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
@@ -33,6 +34,7 @@ const formFieldDriver = ({ element, dataHook }) => {
       tooltipTestkit.mouseEnter();
       return tooltipTestkit.getContentElement().textContent;
     },
+    getSuffix: () => byHook(dataHooks.suffix),
   };
 };
 

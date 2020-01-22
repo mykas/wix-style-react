@@ -137,6 +137,7 @@ class AutoCompleteWithLabel extends React.PureComponent {
             hideStatusSuffix
             onFocus={onFocus}
             onBlur={onBlur}
+            size={'large'}
             inputElement={
               <Input
                 name={name}

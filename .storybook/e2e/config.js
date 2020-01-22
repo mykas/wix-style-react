@@ -2,7 +2,6 @@ import { configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 
 import { version } from '../../package.json';
-import '../../src/assets/helvetica.scss';
 
 function loadStories() {
   if (global.self === global.top) {

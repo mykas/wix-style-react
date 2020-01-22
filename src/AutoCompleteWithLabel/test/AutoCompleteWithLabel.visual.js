@@ -99,15 +99,15 @@ tests.forEach(({ describe, its }) => {
 
 interactiveTests.forEach(({ describe, its }) => {
   its.forEach(({ it, props, componentDidMount }) => {
-    storiesOf(`InputWithLabel${describe ? '/' + describe : ''}`, module).add(
-      it,
-      () => (
-        <InteractiveEyeTest
-          {...commonProps}
-          {...props}
-          componentDidMount={componentDidMount}
-        />
-      ),
-    );
+    storiesOf(
+      `AutoCompleteWithLabel${describe ? '/' + describe : ''}`,
+      module,
+    ).add(it, () => (
+      <InteractiveEyeTest
+        {...commonProps}
+        {...props}
+        componentDidMount={componentDidMount}
+      />
+    ));
   });
 });

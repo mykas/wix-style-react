@@ -12,6 +12,7 @@ export const Title = props => {
     </Heading>
   );
 };
+
 Title.displayName = 'TableToolbar.Title';
 Title.propTypes = {
   children: node,

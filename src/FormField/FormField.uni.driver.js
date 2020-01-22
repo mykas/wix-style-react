@@ -1,5 +1,6 @@
 import { baseUniDriverFactory } from '../../test/utils/unidriver';
 import { tooltipDriverFactory } from '../Tooltip/TooltipNext/Tooltip.uni.driver';
+import { dataHooks } from './constants';
 
 export const formFieldUniDriverFactory = (base, body, { dataHook }) => {
   const charactersCounter = () => base.$('[data-hook*="formfield-counter"]');
@@ -47,6 +48,13 @@ export const formFieldUniDriverFactory = (base, body, { dataHook }) => {
         body,
       );
       return await testkit.getTooltipText();
+    },
+    getSuffix: async () => {
+      const suffixElement = base.$(`[data-hook="${dataHooks.suffix}"]`);
+
+      return (await suffixElement.exists())
+        ? suffixElement.getNative() // eslint-disable-line no-restricted-properties
+        : null;
     },
   };
 };

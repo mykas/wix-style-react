@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
 import InputArea from '../InputArea';
 

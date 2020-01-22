@@ -8,31 +8,29 @@ export const modalPreviewLayoutPrivateDriverFactory = (base, body) => {
   );
   const leftArrow = base.$(`[data-hook="${dataHooks.modalPreviewLeftArrow}"]`);
 
-  const createTooltipDriver = dataHook => {
+  const getTooltipDriver = dataHook => {
     const element = base.$(`[data-hook="${dataHook}"]`);
     return tooltipDriverFactory(element, body);
   };
 
-  const nextTooltipDriver = createTooltipDriver(
+  const nextTooltipDriver = getTooltipDriver(
     dataHooks.nextNavigationButtonTooltip,
   );
-  const prevTooltipDriver = createTooltipDriver(
+
+  const prevTooltipDriver = getTooltipDriver(
     dataHooks.prevNavigationButtonTooltip,
   );
-  const closeButtonTooltipDriver = createTooltipDriver(
+  const closeButtonTooltipDriver = getTooltipDriver(
     dataHooks.closeButtonTooltip,
   );
 
   return {
     ...publicDriverFactory(base),
-    clickRightNavigationButton: async () => {
-      await rightArrow.click();
-      await nextTooltipDriver.mouseLeave();
-    },
-    clickLeftNavigationButton: async () => {
-      await leftArrow.click();
-      await prevTooltipDriver.mouseLeave();
-    },
+
+    clickRightNavigationButton: () => rightArrow.click(),
+
+    clickLeftNavigationButton: () => leftArrow.click(),
+
     hoverCloseButton: () => closeButtonTooltipDriver.mouseEnter(),
 
     hoverRightNavigationButton: () => nextTooltipDriver.mouseEnter(),

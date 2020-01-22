@@ -40,6 +40,9 @@ import GoogleAddressInput from 'wix-style-react/GoogleAddressInput';
 import Search from 'wix-style-react/Search';
 import ImageViewer from 'wix-style-react/ImageViewer';
 import { Category } from '../../../storiesHierarchy';
+import VariableInput from 'wix-style-react/VariableInput';
+import PopoverMenu from 'wix-style-react/beta/PopoverMenu';
+import { Add } from 'wix-ui-icons-common';
 
 const groupSymbol = symbolsGroup.inputs;
 
@@ -389,6 +392,50 @@ const MediaInputExample = () => {
     </SingleComponentSideBySide>
   );
 };
+const VariableInputExample = () => {
+  const symbol = inputsSymbols.variableInput;
+  const components = inputsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+    size: singleComponentSizes.compact,
+  };
+  let myRef = null;
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <div style={{ position: 'relative' }}>
+        <FormField label="Variable Input">
+          <VariableInput
+            initialValue="{{Variable 1}} Text {{Variable 2}} Text"
+            variableParser={k => k}
+            rows={3}
+            size="medium"
+            ref={ref => {
+              myRef = ref;
+            }}
+          />
+        </FormField>
+        <Box position="absolute" top={3} right={0}>
+          <PopoverMenu
+            triggerElement={
+              <TextButton size="tiny" prefixIcon={<Add />}>
+                Insert Variable
+              </TextButton>
+            }
+          >
+            {['First', 'Second', 'Third', 'Fourth'].map(v => (
+              <PopoverMenu.MenuItem
+                text={`${v} Option`}
+                onClick={() => myRef.insertVariable(`${v} Option`)}
+              />
+            ))}
+          </PopoverMenu>
+        </Box>
+      </div>
+    </SingleComponentSideBySide>
+  );
+};
 
 const InputFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
@@ -407,6 +454,7 @@ const InputFamily = () => (
     <GoogleAddressInputExample />
     <SearchInputExample />
     <MediaInputExample />
+    <VariableInputExample />
   </FamilyStructure>
 );
 

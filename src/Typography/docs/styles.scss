@@ -1,13 +1,15 @@
+@import './colors.scss';
+
 .table {
   border-collapse: collapse;
+  text-transform: lowercase;
 }
 
 .table th, .table td {
   border: 1px solid black;
-  padding: 2px;
-}
+  padding: 5px;
 
-.codeExample {
-  background-color: #f0f4f7;
-  padding: 10px;
+  &.light {
+    background-color: $D10;
+  }
 }

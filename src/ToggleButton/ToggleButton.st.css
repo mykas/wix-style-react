@@ -1,6 +1,6 @@
 :import {
-  -st-from: "wix-ui-core/dist/src/components/button-next/button-next.st.css";
-  -st-default: Button;
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: ButtonNext;
 }
 
 :import {
@@ -9,11 +9,13 @@
 }
 
 .root {
-  -st-states: skin(enum(standard, dark)), selected, size(enum(medium));
-  -st-extends: Button;
+  
 }
 
 .root {
+  -st-extends: ButtonNext;
+  -st-states: skin(enum(standard, dark)), selected, size(enum(medium));
+  
   min-width: 0;
   width: 36px;
   height: 36px;

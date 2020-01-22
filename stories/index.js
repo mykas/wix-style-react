@@ -164,6 +164,7 @@ require('./TextInput/index.story'); // 3.1. Text Input
 require('./TextArea/index.story'); // 3.2 Text Area
 require('./NumberInput/index.story'); // 3.4 NumberInput
 require('./MultiSelect/index.story'); // 3.12 Tags
+require('./VariableInput/index.story'); // 3.16 VariableInput
 
 // 4. Selection
 require('./SegmentedToggle/index.story'); // 4.5 SegmentedToggle

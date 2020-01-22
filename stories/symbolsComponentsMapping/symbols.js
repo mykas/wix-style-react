@@ -50,6 +50,7 @@ export const inputsSymbols = {
   googleAddressInput: '3.13 Google Address Input',
   searchInput: '3.14 Search Input',
   mediaInput: '3.15 Media Input',
+  variableInput: '3.16 Variable Input',
 };
 
 /**

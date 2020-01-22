@@ -1,9 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Tooltip from '../Tooltip';
-import Text, { SKINS, SIZES, WEIGHTS } from '../Text';
+import PropTypes from 'prop-types';
+import React from 'react';
 import InfoIcon from '../InfoIcon';
+import Text, { SIZES, SKINS, WEIGHTS } from '../Text';
+import Tooltip from '../Tooltip';
+import { dataHooks } from './constants';
 import styles from './FormField.scss';
 
 const PLACEMENT = {
@@ -34,7 +35,6 @@ const charactersLeft = lengthLeft => {
       weight={WEIGHTS.normal}
       {...colorProps}
       data-hook="formfield-counter"
-      className={styles.counter}
       children={lengthLeft}
     />
   );
@@ -59,6 +59,9 @@ class FormField extends React.Component {
     /** character count displayed on top right of the component */
     charCount: PropTypes.number,
 
+    /** A custom element to appear on the end of the label row (it overrides the charCount in case it's provided) */
+    suffix: PropTypes.node,
+
     /** Defines if the content (children container) grows when there's space available (otherwise, it uses the needed space only) */
     stretchContent: PropTypes.bool,
 
@@ -75,7 +78,7 @@ class FormField extends React.Component {
       PLACEMENT.left,
     ]),
 
-    /** label aligmnent  */
+    /** label alignment  */
     labelAlignment: PropTypes.oneOf([ALIGN.middle, ALIGN.top]),
 
     /** whether to display an asterisk (*) or not */
@@ -155,21 +158,33 @@ class FormField extends React.Component {
     );
   };
 
-  _renderInlineSuffixes = () => {
-    const { required, children } = this.props;
+  _renderLabelIndicators = () => {
+    const { required, children, suffix } = this.props;
 
     return (
       <div
-        data-hook="formfield-inline-suffixes"
-        className={classnames(styles.suffixesInline, {
+        data-hook={dataHooks.labelIndicators}
+        className={classnames(styles.labelIndicators, {
           [styles.minLabelHeight]: !children,
-          [styles.inlineWithCharCounter]: this._hasCharCounter(),
+          [styles.inlineWithSuffix]: suffix || this._hasCharCounter(),
         })}
       >
         {this._renderLabel({ trimLongText: false })}
         {required && asterisk}
         {this._renderInfoIcon()}
       </div>
+    );
+  };
+
+  _renderSuffix = () => {
+    const { suffix } = this.props;
+
+    return (
+      (suffix || this._hasCharCounter()) && (
+        <div data-hook={dataHooks.suffix} className={styles.suffix}>
+          {suffix ? suffix : this._renderCharCounter()}
+        </div>
+      )
     );
   };
 
@@ -228,7 +243,7 @@ class FormField extends React.Component {
             {this._renderLabel({ trimLongText: true })}
             {required && asterisk}
             {this._renderInfoIcon()}
-            {this._renderCharCounter()}
+            {this._renderSuffix()}
           </div>
         )}
 
@@ -236,20 +251,20 @@ class FormField extends React.Component {
           <div
             data-hook="formfield-children"
             className={classnames(styles.children, {
-              [styles.childrenWithInlineSuffixes]:
+              [styles.childrenWithInlineLabel]:
                 !label || this._hasInlineLabel(label, labelPlacement),
             })}
           >
             {(!label || labelPlacement !== PLACEMENT.top) &&
-              this._renderCharCounter()}
+              this._renderSuffix()}
             {this.renderChildren()}
           </div>
         )}
 
-        {!label && (required || infoContent) && this._renderInlineSuffixes()}
+        {!label && (required || infoContent) && this._renderLabelIndicators()}
 
         {this._hasInlineLabel(label, labelPlacement) &&
-          this._renderInlineSuffixes()}
+          this._renderLabelIndicators()}
       </div>
     );
   }

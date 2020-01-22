@@ -9,7 +9,8 @@
   },
   "scripts": {
     "pretest": "yoshi build",
-    "test": "yoshi test --jest"
+    "test": "yoshi test --jest",
+    "storybook:named-imports": " npm run transpile --prefix ../../ && ../../node_modules/.bin/start-storybook -c ./.storybook -p 6009"
   },
   "yoshi": {
     "entry": {

@@ -132,4 +132,26 @@ describe('EditorUtilities', () => {
       );
     });
   });
+  describe('insertText', () => {
+    it('Should Add text to contentState', () => {
+      const content = EditorUtilities.stringToContentState({
+        str: strWithValue,
+        variableParser,
+        prefix,
+        suffix,
+      });
+      editorState = EditorState.createWithContent(content);
+      editorState = EditorState.moveFocusToEnd(editorState);
+      editorState = EditorUtilities.insertText(
+        editorState,
+        variableEntity.text,
+      );
+      expect(editorState.getCurrentContent().getPlainText()).toEqual(
+        strEntity + `${variableEntity.text}`,
+      );
+      expect(
+        EditorUtilities.convertToString({ editorState, prefix, suffix }),
+      ).toEqual(strWithValue + variableEntity.text);
+    });
+  });
 });

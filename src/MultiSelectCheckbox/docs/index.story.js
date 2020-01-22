@@ -1,13 +1,25 @@
 import React from 'react';
-import CodeExample from 'wix-storybook-utils/CodeExample';
-
 import { storySettings } from './storySettings';
-
-import ExampleStandard from './ExampleStandard';
-import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
-
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  columns,
+  divider,
+  code as baseCode,
+  playground,
+  api,
+  testkit,
+} from 'wix-storybook-utils/Sections';
+import allComponents from '../../../stories/utils/allComponents';
 import MultiSelectCheckbox from '..';
-import options from './multiSelectOptions';
+import * as examples from './examples';
+
+const code = config =>
+  baseCode({ components: allComponents, compact: true, ...config });
 
 export default {
   category: storySettings.category,
@@ -16,7 +28,7 @@ export default {
   componentPath: '..',
 
   componentProps: (setState, getState) => ({
-    options,
+    options: examples.options,
     disableClickOutsideWhenClosed: true,
     selectedOptions: [],
     onClickOutside: () => {},
@@ -38,13 +50,46 @@ export default {
   exampleProps: {
     options: [
       { label: 'One option', value: [{ id: 0, value: 'Just me here' }] },
-      { label: `${options.length} options`, value: options },
+      { label: `${examples.options.length} options`, value: examples.options },
     ],
   },
 
-  examples: (
-    <CodeExample title="Standard" code={ExampleStandardRaw}>
-      <ExampleStandard />
-    </CodeExample>
-  ),
+  sections: [
+    header({
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/MultiSelectCheckbox/',
+    }),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          columns([
+            description({
+              title: 'Description',
+              text:
+                'MultiSelectCheckbox component can select multiple values through checkbox',
+            }),
+          ]),
+          importExample(
+            "import MultiSelectCheckbox from 'wix-style-react/MultiSelectCheckbox';",
+          ),
+
+          divider(),
+
+          title('Examples'),
+
+          code({
+            source: examples.simple,
+            compact: false,
+          }),
+        ],
+      }),
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

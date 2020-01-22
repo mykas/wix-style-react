@@ -6,6 +6,7 @@ export interface VariableInputProps {
   dataHook?: string;
   disabled?: boolean,
   initialValue?: string,
+  multiline?: boolean,
   rows?: number,
   size?: VariableInputSize,
   onChange: (value:string) => void,

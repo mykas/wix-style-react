@@ -138,6 +138,7 @@ class Checkbox extends React.PureComponent {
                 { className: styles.children },
               )}
               data-hook={dataHooks.children}
+              onClick={e => e.stopPropagation()}
             >
               {children}
             </div>

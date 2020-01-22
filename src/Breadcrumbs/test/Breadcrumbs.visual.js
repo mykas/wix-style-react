@@ -2,7 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Breadcrumbs from '../Breadcrumbs';
 import Box from 'wix-style-react/Box';
-import { Layout, Cell } from 'wix-style-react/Layout';
 import { SIZES, THEMES } from '../constnats';
 import { breadcrumbsTestkitFactory } from '../../../testkit';
 

@@ -31,6 +31,7 @@ export const inputsComponentsNames = {
   Search: 'Search',
   ImageViewer: 'ImageViewer',
   GoogleAddressInput: 'GoogleAddressInput',
+  VariableInput: 'VariableInput',
 };
 
 /**

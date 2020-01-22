@@ -5,7 +5,6 @@ import Slide from 'rc-slider';
 import { generateID } from '../utils/generateId';
 import SliderHandle from './SliderHandle';
 import styles from './Slider.scss';
-import textStyles from '../Text/Text.st.css';
 
 const range = ({ min, max, step }) => {
   const arr = [];
@@ -29,15 +28,7 @@ export default class Slider extends Component {
             <div className={styles.markLine} />
             <div className={styles.markValue}>
               {(curr === min || curr === max) && (
-                <div
-                  {...textStyles('root', {
-                    size: 'small',
-                    skin: 'standard',
-                    weight: 'thin',
-                  })}
-                >
-                  {curr}
-                </div>
+                <div className={styles.markText}>{curr}</div>
               )}
             </div>
           </div>

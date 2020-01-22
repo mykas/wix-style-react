@@ -17,7 +17,6 @@ import {
   TableToolbar,
   ItemGroup,
   Item,
-  Label,
   Title,
 } from 'wix-style-react/TableToolbar';
 

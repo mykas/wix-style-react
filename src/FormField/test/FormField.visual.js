@@ -123,6 +123,22 @@ const testGroups = [
     ],
   },
   {
+    describe: 'Suffix',
+    tests: [
+      {
+        describe: 'Should render',
+        labelPlacements: ['top', 'left'],
+        its: [
+          {
+            label: 'Label',
+            children: [<Input />],
+            suffix: <div>Some suffix</div>,
+          },
+        ],
+      },
+    ],
+  },
+  {
     describe: 'Label Alignment',
     tests: [
       {

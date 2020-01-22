@@ -113,9 +113,7 @@ $arrowDownShadow: -3px -3px 8px rgba(0, 0, 0, .1);
   }
 
   &:not(.title) {
-    @extend .text;
-    @extend .sizeMedium;
-    @extend .weightNormal;
+    @extend .text, .sizeMedium, .weightNormal;
   }
 
   &.title {

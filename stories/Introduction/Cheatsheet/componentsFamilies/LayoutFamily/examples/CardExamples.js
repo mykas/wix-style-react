@@ -7,10 +7,7 @@ import {
 } from '../../../sharedComponents/utils';
 
 import { layoutSymbolsToComponents } from '../../../../../symbolsComponentsMapping/families/layoutFamily';
-import {
-  layoutSymbols,
-  symbolsGroup,
-} from '../../../../../symbolsComponentsMapping/symbols';
+import { layoutSymbols } from '../../../../../symbolsComponentsMapping/symbols';
 
 import Card from 'wix-style-react/Card';
 

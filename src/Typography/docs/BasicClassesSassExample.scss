@@ -13,6 +13,5 @@
 }
 
 .myText {
-  @extend .text;
-  @extend .sizeSmall;
+  @extend .text, .sizeSmall;
 }

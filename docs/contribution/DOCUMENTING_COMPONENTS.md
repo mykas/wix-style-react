@@ -13,7 +13,7 @@ The storybook is structured accordingly. For example:
 ```
 4. Selection // The category
   4.1 Dropdown // The relevant component by their semantic meaning with common example use cases
-  
+
 Components //APIs
   - Dropdown // The actual component to be used
   - FormField // Another acutal component to be used with Dropdown
@@ -51,3 +51,8 @@ export default {
   }
 }
 ```
+
+## Cheatsheet
+
+In order to improve the components discoverability and map each UX symbol to the relevant components used, we've created a [Cheatsheet](https://wix-style-react.now.sh/?path=/story/introduction-cheatsheet--components-cheatsheet) with all the components within the library.
+[Read here ](./CHEATSHEET_GUIDLINES.md) to learn how to document components in the Cheatsheet.

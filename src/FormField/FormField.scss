@@ -27,12 +27,12 @@ $childrenMargin: 6px;
   flex: 0 0 100%;
   max-width: 100%;
 
-  &.childrenWithInlineSuffixes {
+  &.childrenWithInlineLabel {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
 
-    .counter {
+    .suffix {
       margin-bottom: $childrenMargin;
     }
   }
@@ -63,7 +63,7 @@ $childrenMargin: 6px;
 .labelFromRight {
   flex-direction: row;
 
-  .childrenWithInlineSuffixes {
+  .childrenWithInlineLabel {
     padding-right: $suffixHorizontalPadding;
   }
 }
@@ -71,7 +71,7 @@ $childrenMargin: 6px;
 .labelFromLeft {
   flex-direction: row-reverse;
 
-  .childrenWithInlineSuffixes {
+  .childrenWithInlineLabel {
     padding-left: $suffixHorizontalPadding;
   }
 }
@@ -86,14 +86,14 @@ $childrenMargin: 6px;
 
 @include withRTL {
   .labelFromRight {
-    .childrenWithInlineSuffixes {
+    .childrenWithInlineLabel {
       padding-right: 0;
       padding-left: $suffixHorizontalPadding;
     }
   }
 
   .labelFromLeft {
-    .childrenWithInlineSuffixes {
+    .childrenWithInlineLabel {
       padding-left: 0;
       padding-right: $suffixHorizontalPadding;
     }
@@ -101,7 +101,7 @@ $childrenMargin: 6px;
 }
 
 .asterisk {
-  @extend .text.sizeMedium.weightThin;
+  @extend .text, .sizeMedium, .weightThin;
   display: inline-block;
   color: $B20;
   font-size: 22px;
@@ -113,17 +113,18 @@ $childrenMargin: 6px;
   margin-left: 3px;
 }
 
-.suffixesInline {
+.labelIndicators {
   display: flex;
   align-items: center;
-  &.inlineWithCharCounter {
-    $charCounterHeight: 18px;
 
-    // Aligns the inline label on the top in case the counter appears
-    margin-top: $charCounterHeight + $childrenMargin;
+  &.inlineWithSuffix {
+    $suffixHeight: 18px;
+
+    // Aligns the inline label on the top in case the suffix (whether custom or the char counter) appears
+    margin-top: $suffixHeight + $childrenMargin;
   }
 }
 
-.counter {
+.suffix {
   margin-left: auto;
 }

@@ -13,9 +13,9 @@ export const withTooltip = `
 export const alignment = `
 <Layout>
   <Cell>
-    <FormField 
-        label="Middle" 
-        labelPlacement="right" 
+    <FormField
+        label="Middle"
+        labelPlacement="right"
         labelAlignment="middle"
     >
       <InputArea/>
@@ -24,12 +24,12 @@ export const alignment = `
   <Cell>
     <FormField
       label="Top"
-      labelPlacement="left" 
+      labelPlacement="left"
       labelAlignment="top"
      >
     <InputArea/>
     </FormField>
-  </Cell>  
+  </Cell>
 </Layout>
 `;
 
@@ -82,4 +82,10 @@ export const ExampleWithinGrid = `
     </Row>
   </Container>
 </MessageBoxFunctionalLayout>;
+`;
+
+export const customSuffix = `
+<FormField label="Your name" suffix={<TextButton>Action</TextButton>}>
+  <Input/>
+</FormField>
 `;

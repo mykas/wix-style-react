@@ -40,9 +40,6 @@ export default {
   exampleProps: {
     // Put here presets of props, for more info:
     // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
-    title: 'Site Name | a title of your site',
-    previewUrl: 'www.site-name.com',
-    description: 'A short description for a site',
   },
 
   sections: [
