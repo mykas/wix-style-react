@@ -132,12 +132,6 @@ export default {
               source: examples.states,
             },
             {
-              title: 'Dynamic width',
-              subtitle:
-                'For options that are too long - dropdown component can be detached from parent container width to document body by passing popover prop `appendTo="window"`. Just make sure to control the growth of the dropdown with maxWidth prop.',
-              source: examples.dynamicWidth,
-            },
-            {
               title: 'Native support',
               subtitle:
                 'For mobile usage the component can switch to native dropdown.',
@@ -155,6 +149,36 @@ export default {
               source: examples.overflow,
             },
           ].map(example),
+
+          divider(),
+
+          title('Constraints'),
+
+          columns([
+            description({
+              title: 'Width',
+              text:
+                'By default long options are wrapped and constrained to parent container width. For options that are too long - dropdown list can be detached from parent container width by passing `appendTo="window"` popover prop. Make sure to control the maximum growth of the dropdown list with `maxWidth` popover prop.',
+            }),
+
+            liveCode({
+              compact: true,
+              source: examples.widthConstraints,
+            }),
+          ]),
+
+          columns([
+            description({
+              title: 'Height',
+              text:
+                'The maximum allowed height of dropdown list container can be adjusted using `maxHeightPixels` prop.',
+            }),
+
+            liveCode({
+              compact: true,
+              source: examples.heightConstraints,
+            }),
+          ]),
         ],
       }),
 

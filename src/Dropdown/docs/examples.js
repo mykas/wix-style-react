@@ -70,7 +70,7 @@ export const suffix = `
 export const footer = `
   <Dropdown
     placeholder="Select an option"
-    fixedFooter={<div style={{ display: 'flex', justifyContent: 'space-around', padding: '15px 24px', alignItems: 'center'}}><TextButton skin="dark" underline="always">Clear</TextButton><Button>Apply</Button></div>}    
+    fixedFooter={<div style={{ display: 'flex', justifyContent: 'space-around', padding: '15px 24px', alignItems: 'center'}}><TextButton skin="dark" underline="always">Clear</TextButton><Button>Apply</Button></div>}
     options={[{id: 0, value: 'Left'}, {id: 1, value: 'Right'}, {id: 2, value: 'Ambidextrous'},{ id: -99, value: '-' }]}
     />
 `;
@@ -85,7 +85,7 @@ export const states = `
     { id: 3, value: 'Option 4' },
   ]}
   disabled
-  placeholder={'Choose an option'}
+  placeholder="Select an option"
 />
 <Dropdown
   options={[
@@ -96,22 +96,46 @@ export const states = `
   ]}
   status="error"
   statusMessage="I am in error state"
-  placeholder={'Choose an option'}
+  placeholder="Select an option"
 />
 </Layout>
 `;
 
-export const dynamicWidth = `
+export const widthConstraints = `
+<Layout cols={1}>
+  <Dropdown
+    options={[
+      { id: 0, value: 'Very long long long long long long long long long long long long long long option' },
+      { id: 1, value: 'Option 2' },
+      { id: 2, value: 'Option 3' },
+      { id: 3, value: 'Option 4' },
+    ]}
+    placeholder="Default"
+  />
+  <Dropdown
+    popoverProps={{ appendTo: "window", maxWidth: "600px" }}
+    options={[
+      { id: 0, value: 'Very long long long long long long long long long long long long long long option' },
+      { id: 1, value: 'Option 2' },
+      { id: 2, value: 'Option 3' },
+      { id: 3, value: 'Option 4' },
+    ]}
+    placeholder="Detached"
+  />
+</Layout>
+`;
+
+export const heightConstraints = `
 <Dropdown
- popoverProps={{ appendTo:"window", maxWidth: "600px" }}
+  maxHeightPixels="107px"
   options={[
-    { id: 0, value: 'Very long long long long long long long long long long long long long option' },
+    { id: 0, value: 'Option 1' },
     { id: 1, value: 'Option 2' },
     { id: 2, value: 'Option 3' },
     { id: 3, value: 'Option 4' },
   ]}
-  placeholder={'Choose an option'}
-/> 
+  placeholder="Select an option"
+/>
 `;
 
 export const native = `
@@ -122,7 +146,7 @@ export const native = `
     { id: 2, value: 'Option 3' },
     { id: 3, value: 'Option 4' },
   ]}
-  placeholder={'Choose an option'}
+  placeholder="Select an option"
   native
 />
 `;
@@ -173,15 +197,15 @@ class ExampleInfiniteScroll extends React.Component {
 
 export const overflow = `
 <div style={{ display:'flex', justifyContent:'center', alignItems: 'center', width: '400px', height: '150px', background: 'rgba(240, 244, 247, 1)', overflow:'scroll'}}>
- <Dropdown 
-  popoverProps={{ appendTo:"window" }}
-  options={[
-    { id: 0, value: 'Option 1' },
-    { id: 1, value: 'Option 2' },
-    { id: 2, value: 'Option 3' },
-    { id: 3, value: 'Option 4' },
-  ]}
-placeholder={'Choose an option'}
-/>
+  <Dropdown
+    popoverProps={{ appendTo:"window" }}
+    options={[
+      { id: 0, value: 'Option 1' },
+      { id: 1, value: 'Option 2' },
+      { id: 2, value: 'Option 3' },
+      { id: 3, value: 'Option 4' },
+    ]}
+    placeholder="Select an option"
+  />
 </div>
 `;

@@ -20,6 +20,7 @@ Types of changes:
 
 - `<GooglePreview/>` - fix broken playground [#4909](https://github.com/wix/wix-style-react/pull/4909)
 - `<Cell/> Layout` - Fix Firefox bug on grid text overflow [#4906](https://github.com/wix/wix-style-react/pull/4906)
+- `<Dropdown/>` - Improve dropdown list constraints documentation [#4911](https://github.com/wix/wix-style-react/pull/4911)
 
 ## 7.37.1 - 2020-01-22
 
