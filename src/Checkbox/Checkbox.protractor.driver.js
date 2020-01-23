@@ -1,8 +1,9 @@
-import styles from './Checkbox.scss';
 import focusableDriverFactory from '../common/Focusable/Focusable.protractor.driver';
 import { mergeDrivers } from '../../test/utils/private-drivers';
-import { hasAttribute, hasClass } from '../../test/utils/protractor-helpers';
+import { hasAttribute } from '../../test/utils/protractor-helpers';
 import { dataHooks } from './constants';
+import { StylableDOMUtil } from '@stylable/dom-test-kit';
+import styles from './Checkbox.st.css';
 
 /**
  * @return <T extends InternalFocusableDriver>
@@ -20,6 +21,7 @@ export const internalDriverFactory = element => {
 };
 
 const checkboxDriverFactory = element => {
+  const stylableDOMUtil = new StylableDOMUtil(styles);
   const checkboxElement = element.$(`[data-hook="${dataHooks.box}"]`);
   const childrenElement = element.$(`[data-hook="${dataHooks.children}"]`);
 
@@ -37,7 +39,7 @@ const checkboxDriverFactory = element => {
     isChecked: () => element.$(`[data-hook="${dataHooks.input}"]`).isSelected(),
     isDisabled: () =>
       hasAttribute(element.$(`[data-hook="${dataHooks.input}"]`), 'disabled'),
-    hasError: () => hasClass(element, styles.hasError),
+    hasError: () => !!stylableDOMUtil.getStyleState(element, 'error'),
   };
 
   return mergeDrivers(publicDriver, focusableDriver);

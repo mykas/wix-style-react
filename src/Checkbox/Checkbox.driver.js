@@ -3,15 +3,18 @@ import { labelDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 //TODO - add tooltip classic driver in the correct place
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
-import styles from './Checkbox.scss';
+import { StylableDOMUtil } from '@stylable/dom-test-kit';
+import styles from './Checkbox.st.css';
+
 import { dataHooks } from './constants';
 
 const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 
 const checkboxDriverFactory = ({ element, eventTrigger }) => {
+  const stylableDOMUtil = new StylableDOMUtil(styles);
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
   const input = () => element.querySelector('input');
-  const checkbox = () => element.querySelector(styles.checkbox);
+  const checkbox = () => element.querySelector(dataHooks.box);
   const labelDriver = () =>
     labelTestkitFactory({ wrapper: element, dataHook: dataHooks.label });
   const isChecked = () => input().checked;
@@ -46,11 +49,12 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
      * Focus related testing is done in e2e tests only.
      * @deprecated
      */
-    hasFocusState: () => element.getAttribute('data-focus'),
+    hasFocusState: () => element.hasAttribute('data-focus'),
     isChecked: () => isChecked(),
-    isDisabled: () => isClassExists(element, styles.disabled),
-    isIndeterminate: () => isClassExists(element, styles.indeterminate),
-    hasError: () => isClassExists(element, styles.hasError),
+    isDisabled: () => !!stylableDOMUtil.getStyleState(element, 'disabled'),
+    isIndeterminate: () =>
+      !!stylableDOMUtil.getStyleState(element, 'indeterminate'),
+    hasError: () => !!stylableDOMUtil.getStyleState(element, 'error'),
     getLabel: () => labelDriver().getLabelText(),
     getLabelDriver: () => labelDriver(),
     getErrorMessage,

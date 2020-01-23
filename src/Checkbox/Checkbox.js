@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import CheckboxChecked from 'wix-ui-icons-common/system/CheckboxChecked';
 import CheckboxIndeterminate from 'wix-ui-icons-common/system/CheckboxIndeterminate';
 import Label from '../Label';
-import styles from './Checkbox.scss';
+import styles from './Checkbox.st.css';
 import textStyles from '../Text/Text.st.css';
-import { withFocusable, focusableStates } from '../common/Focusable';
+import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 
 import { generateID } from '../utils/generateId';
 import Tooltip from '../Tooltip';
@@ -47,38 +46,31 @@ class Checkbox extends React.PureComponent {
       size,
       onChange,
       children,
-      className,
       dataHook,
     } = this.props;
 
-    const classname = classNames(
-      styles.root,
-      className,
-      indeterminate
-        ? styles.indeterminate
-        : checked
-        ? styles.checked
-        : styles.unchecked,
-      {
-        [styles.hover]: hover,
-        [styles.disabled]: disabled,
-        [styles.hasError]: hasError && !disabled,
-        [styles.selectionAreaAlways]: selectionArea === 'always',
-        [styles.selectionAreaHover]: selectionArea === 'hover',
-      },
-    );
-
-    /*
-    NOTE: attaching Focusable handlers to root div (when the tabindex was on the main div under the label) is not working. The onFocus does not get
-    called when clicking on the text (the children). So I moved the tabindex to the root.
-    */
     return (
       <div
         data-hook={dataHook}
-        className={classname}
+        {...styles(
+          styles.root,
+          {
+            vAlign,
+            selectionArea,
+            disabled,
+            error: hasError && !disabled,
+            selection: indeterminate
+              ? 'indeterminate'
+              : checked
+              ? 'checked'
+              : 'unchecked',
+            indeterminate,
+            xhover: hover,
+          },
+          this.props,
+        )}
         onFocus={this.props.focusableOnFocus}
         onBlur={this.props.focusableOnBlur}
-        {...focusableStates(this.props)}
         tabIndex={disabled ? null : 0}
         {...this._getDataAttributes()}
       >
@@ -95,16 +87,14 @@ class Checkbox extends React.PureComponent {
         <Label
           for={id}
           dataHook={dataHooks.label}
-          className={classNames({
-            [styles.vtop]: vAlign === 'top',
-          })}
+          className={styles.label}
           size={size}
         >
           <Tooltip
             upgrade
             dataHook={dataHooks.box}
             disabled={disabled || !hasError || !errorMessage}
-            placement={'top'}
+            placement="top"
             textAlign="center"
             content={errorMessage || ' '}
             maxWidth={230}
@@ -112,7 +102,7 @@ class Checkbox extends React.PureComponent {
             zIndex={10000}
           >
             <div className={styles.outer}>
-              <div className={classNames(styles.checkbox, styles[size])}>
+              <div className={styles.checkbox}>
                 <div
                   className={styles.inner}
                   onClick={e => e.stopPropagation()}
@@ -129,7 +119,7 @@ class Checkbox extends React.PureComponent {
           {children && (
             <div
               {...textStyles(
-                'root',
+                textStyles.root,
                 {
                   size,
                   skin: disabled ? 'disabled' : 'standard',
