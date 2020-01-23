@@ -3,15 +3,13 @@ import { labelDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 //TODO - add tooltip classic driver in the correct place
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
-import { StylableDOMUtil } from '@stylable/dom-test-kit';
-import styles from './Checkbox.st.css';
 
 import { dataHooks } from './constants';
+import * as DATA_ATTR from './DataAttr';
 
 const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 
 const checkboxDriverFactory = ({ element, eventTrigger }) => {
-  const stylableDOMUtil = new StylableDOMUtil(styles);
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
   const input = () => element.querySelector('input');
   const checkbox = () => element.querySelector(dataHooks.box);
@@ -51,10 +49,11 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
      */
     hasFocusState: () => element.hasAttribute('data-focus'),
     isChecked: () => isChecked(),
-    isDisabled: () => !!stylableDOMUtil.getStyleState(element, 'disabled'),
+    isDisabled: () => element.getAttribute(DATA_ATTR.DATA_DISABLED) === 'true',
     isIndeterminate: () =>
-      !!stylableDOMUtil.getStyleState(element, 'indeterminate'),
-    hasError: () => !!stylableDOMUtil.getStyleState(element, 'error'),
+      element.getAttribute(DATA_ATTR.DATA_CHECK_TYPE) ===
+      DATA_ATTR.CHECK_TYPES.INDETERMINATE,
+    hasError: () => element.getAttribute(DATA_ATTR.DATA_HAS_ERROR) === 'true',
     getLabel: () => labelDriver().getLabelText(),
     getLabelDriver: () => labelDriver(),
     getErrorMessage,
