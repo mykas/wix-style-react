@@ -10,17 +10,18 @@ const Image = ({
   height,
   fit,
   position,
+  lazy,
   ...otherProps
 }) => {
   const isTiled = fit === 'tile';
-  const style = !isTiled
+  const style = isTiled
     ? {
-        objectFit: fit,
-        objectPosition: position,
-      }
-    : {
         backgroundPosition: position,
         backgroundImage: source ? `url(${source})` : undefined,
+      }
+    : {
+        objectFit: fit,
+        objectPosition: position,
       };
 
   return (
@@ -31,6 +32,7 @@ const Image = ({
       width={width}
       height={height}
       style={style}
+      loading={lazy ? 'lazy' : undefined}
     />
   );
 };
@@ -54,13 +56,21 @@ Image.propTypes = {
   /**
    * Image source content position inside an element box. Any valid
    * [CSS position](https://developer.mozilla.org/en-US/docs/Web/CSS/position_value)
-   * value. */
+   * value.
+   */
   position: PropTypes.string,
+
+  /**
+   * Lazy load the image when it reaches a calculated distance from the viewport
+   * (as defined by the browser).
+   */
+  lazy: PropTypes.bool,
 };
 
 Image.defaultProps = {
   fit: 'cover',
   position: 'center',
+  lazy: false,
 };
 
 Image.displayName = 'Image';

@@ -71,7 +71,7 @@ export default {
             code({
               compact: true,
               source:
-                '<Image width="600px" fit="tile" height="400px" source="https://interactive-examples.mdn.mozilla.net/media/examples/moon.jpg" />',
+                '<Image lazy width="100%" fit="cover" source="https://interactive-examples.mdn.mozilla.net/media/examples/moon.jpg" />',
             }),
           ]),
         ],
