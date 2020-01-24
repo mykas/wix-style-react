@@ -14,6 +14,7 @@ import {
   testkit,
 } from 'wix-storybook-utils/Sections';
 
+import Box from '../../Box';
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
@@ -28,18 +29,33 @@ export default {
   component: Image,
   componentPath: '..',
 
-  componentProps: {},
+  componentProps: {
+    source:
+      'https://static.wixstatic.com/media/89ea07a19c3d415e99a8a8a3c0ab1de8.jpg/v1/fill/w_343,h_343,al_c,q_80,usm_0.66_1.00_0.01/89ea07a19c3d415e99a8a8a3c0ab1de8.jpg',
+    fit: 'cover',
+    position: 'center',
+    lazy: false,
+  },
 
   exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    position: [
+      'center',
+      'top',
+      'top left',
+      'top right',
+      'right',
+      'bottom',
+      'bottom left',
+      'bottom right',
+      'left',
+    ],
   },
+
+  componentWrapper: ({ component }) => <Box align="center">{component}</Box>,
 
   sections: [
     header({
-      sourceUrl:
-        'https://github.com/wix/wix-style-react/tree/master/src/Image/',
-      component: <Image buttonText="Click me!" />,
+      component: <Image width="150" height="100" />,
     }),
 
     tabs([
