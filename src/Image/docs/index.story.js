@@ -28,9 +28,7 @@ export default {
   component: Image,
   componentPath: '..',
 
-  componentProps: {
-    buttonText: 'Hello World!',
-  },
+  componentProps: {},
 
   exampleProps: {
     // Put here presets of props, for more info:
