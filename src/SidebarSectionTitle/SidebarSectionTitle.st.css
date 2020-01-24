@@ -27,6 +27,7 @@
   padding: 9px 24px;
   max-width: value(sidebarWidth);
   box-sizing: border-box;
+  cursor: default;
 }
 
 .root:skin(dark) {

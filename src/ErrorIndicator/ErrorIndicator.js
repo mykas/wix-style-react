@@ -32,7 +32,7 @@ ErrorIndicator.defaultProps = {
 
 ErrorIndicator.propTypes = {
   dataHook: PropTypes.string,
-  errorMessage: PropTypes.string,
+  errorMessage: PropTypes.node,
   tooltipPlacement: PropTypes.oneOf(['right', 'left', 'top', 'bottom']),
 };
 

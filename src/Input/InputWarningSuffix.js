@@ -35,7 +35,7 @@ class InputWarningSuffix extends React.Component {
 
 InputWarningSuffix.propTypes = {
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
-  warningMessage: PropTypes.string.isRequired,
+  warningMessage: PropTypes.node.isRequired,
   focused: PropTypes.bool,
   narrow: PropTypes.bool,
   tooltipPlacement: PropTypes.string,

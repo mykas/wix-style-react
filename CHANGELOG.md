@@ -16,6 +16,10 @@ Types of changes:
 
 ## Next
 
+### Fixed
+
+- `<Input/>` - fixed `statusMessage` prop type warning [#4921](https://github.com/wix/wix-style-react/pull/4921)
+
 ### Docs
 
 - `<GooglePreview/>` - fix broken playground [#4909](https://github.com/wix/wix-style-react/pull/4909)
