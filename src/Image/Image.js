@@ -9,37 +9,28 @@ const Image = ({
   width,
   height,
   fit,
-  tiled,
   position,
   ...otherProps
 }) => {
-  const commonProps = {
-    ...styles('root', {}, otherProps),
-    'data-hook': dataHook,
-  };
-
-  return tiled ? (
-    <div
-      {...commonProps}
-      style={{
-        backgroundImage: source ? `url(${source})` : undefined,
+  const isTiled = fit === 'tile';
+  const style = !isTiled
+    ? {
+        objectFit: fit,
+        objectPosition: position,
+      }
+    : {
         backgroundPosition: position,
-        backgroundRepeat: tiled ? 'repeat' : 'no-repeat',
-        backgroundSize: fit,
-        width,
-        height,
-      }}
-    />
-  ) : (
+        backgroundImage: source ? `url(${source})` : undefined,
+      };
+
+  return (
     <img
-      {...commonProps}
+      {...styles('root', { tiled: isTiled }, otherProps)}
+      data-hook={dataHook}
       src={source}
       width={width}
       height={height}
-      style={{
-        objectFit: fit,
-        objectPosition: position,
-      }}
+      style={style}
     />
   );
 };
@@ -58,22 +49,18 @@ Image.propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Image source content fit mode inside a box. */
-  fit: PropTypes.oneOf(['contain', 'cover', 'none']),
+  fit: PropTypes.oneOf(['contain', 'cover', 'tile', 'none']),
 
   /**
    * Image source content position inside an element box. Any valid
    * [CSS position](https://developer.mozilla.org/en-US/docs/Web/CSS/position_value)
    * value. */
   position: PropTypes.string,
-
-  /** Use tiled display mode. */
-  tiled: PropTypes.bool,
 };
 
 Image.defaultProps = {
   fit: 'cover',
   position: 'center',
-  tiled: false,
 };
 
 Image.displayName = 'Image';
