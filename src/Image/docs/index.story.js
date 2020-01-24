@@ -71,7 +71,7 @@ export default {
             code({
               compact: true,
               source:
-                '<Image source="https://labviewwiki.org/w/images/a/a9/Example.jpg" />',
+                '<Image width="100%" source="https://labviewwiki.org/w/images/a/a9/Example.jpg" />',
             }),
           ]),
         ],
